@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">HR FUO</string>
+
+
+    <!--    Profile View Activity-->
+    <string name="profile_name">Don Sebastian</string>
+    <string name="designation">Assistant Technician</string>
+    <string name="profileimage_cont_desc">ProfileImage</string>
+    <string name="age_pva">Age</string>
+    <string name="dob_pva">DOB</string>
+    <string name="gender_pva">Gender</string>
+    <string name="qualification_pva">Qualification</string>
+    <string name="address_pva">Address</string>
+    <string name="no_data">No data</string>
+    <!--    Profile View Activity-->
+
+
+    <!--    Service Details Activity-->
+    <string name="doj_sda">Date of joining</string>
+    <string name="desig_on_join_sda">Desig. on joining</string>
+    <string name="current_desig_sda">Current Desig.</string>
+    <string name="dor_sda">Date of retirement</string>
+    <string name="date_of_last_promotion_sda">Last promotion</string>
+    <string name="date_of_next_promotion_sda">Next promotion</string>
+    <string name="service_details_sda">Service Details</string>
+
+    <!--    Service Details Activity-->
+
+    <!--    Main Activity-->
+    <string name="profile_button_desc_ma">Customers Button</string>
+    <string name="profile_ma">Profile</string>
+    <string name="service_ma">Service</string>
+    <string name="salary_ma">Salary</string>
+    <string name="leave_ma">Leave</string>
+    <string name="notifications_ma">Notifications</string>
+    <string name="others_ma">Others</string>
+    <!--    Main Activity-->
+
+</resources>
