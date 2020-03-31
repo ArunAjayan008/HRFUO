@@ -6,5 +6,13 @@
     <color name="colorPrimaryBlue">#0048c4</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorBlack">#000000</color>
-
+    <color name="colorLightBlue">#03A9F4</color>
+    <color name="colorDarkBlue">#3F51B5</color>
+    <color name="colorText">#4097c2ff</color>
+    <color name="colorDimWhiten">#7dffffff</color>
+    <color name="colorBlue">#006dea</color>
+    <color name="colorLiteDimWhite">#A8FFFFFF</color>
+    <color name="colorSatin">#d2ffcb6a</color>
+    <color name="colorBrightWhite">#ffffff</color>
+    <color name="colorFadeBlue">#1744C4</color>
 </resources>

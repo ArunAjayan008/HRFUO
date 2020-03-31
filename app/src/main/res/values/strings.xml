@@ -27,7 +27,6 @@
     <!--    Service Details Activity-->
 
     <!--    Main Activity-->
-    <string name="profile_button_desc_ma">Customers Button</string>
     <string name="profile_ma">Profile</string>
     <string name="service_ma">Service</string>
     <string name="salary_ma">Salary</string>
