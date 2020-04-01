@@ -33,6 +33,10 @@
     <string name="leave_ma">Leave</string>
     <string name="notifications_ma">Notifications</string>
     <string name="others_ma">Others</string>
+    <string name="mob_no_logA">മൊബൈൽ നമ്പർ</string>
+    <string name="paswd_loga">പാസ്‌വേഡ്</string>
+    <string name="login_logA">Login</string>
+    <string name="forgot_pwd_loga">Forgot Password ?</string>
     <!--    Main Activity-->
 
 </resources>
