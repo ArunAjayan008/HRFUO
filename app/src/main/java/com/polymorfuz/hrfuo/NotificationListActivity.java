@@ -18,7 +18,7 @@ public class NotificationListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification_list);
-        recyler_layout=findViewById(R.id.notify_recycler);
+        recyler_layout=findViewById(R.id.recyclerlayout);
         notifycycler=findViewById(R.id.notify_recycler);
         LinearLayoutManager layoutManager = new LinearLayoutManager(NotificationListActivity.this);
         layoutManager.setStackFromEnd(true);

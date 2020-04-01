@@ -27,16 +27,17 @@
     <!--    Service Details Activity-->
 
     <!--    Main Activity-->
-    <string name="profile_ma">Profile</string>
-    <string name="service_ma">Service</string>
-    <string name="salary_ma">Salary</string>
-    <string name="leave_ma">Leave</string>
-    <string name="notifications_ma">Notifications</string>
-    <string name="others_ma">Others</string>
+    <string name="profile_ma">പ്രൊഫൈൽ</string>
+    <string name="service_ma">സർവ്വീസ്‌</string>
+    <string name="salary_ma">സാലറി</string>
+    <string name="leave_ma">ലീവ്‌</string>
+    <string name="notifications_ma">അറിയിപ്പുകൾ</string>
+    <string name="others_ma">മറ്റുള്ളവ</string>
     <string name="mob_no_logA">മൊബൈൽ നമ്പർ</string>
     <string name="paswd_loga">പാസ്‌വേഡ്</string>
-    <string name="login_logA">Login</string>
-    <string name="forgot_pwd_loga">Forgot Password ?</string>
+    <string name="login_logA">ലോഗിൻ ചെയ്യുക</string>
+    <string name="forgot_pwd_loga">പാസ്‌വേഡ് മറന്നു പോയോ ?</string>
+    <string name="signup_logA">അക്കൗണ്ട്‌ തുടങ്ങുക</string>
     <!--    Main Activity-->
 
 </resources>
