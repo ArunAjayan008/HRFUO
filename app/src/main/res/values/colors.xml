@@ -15,4 +15,5 @@
     <color name="colorSatin">#d2ffcb6a</color>
     <color name="colorBrightWhite">#ffffff</color>
     <color name="colorFadeBlue">#1744C4</color>
+    <color name="colorTransparent">#D3000000</color>
 </resources>

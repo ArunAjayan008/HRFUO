@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,7 +23,7 @@ import retrofit2.Retrofit;
 
 public class SignUp_Activity extends AppCompatActivity {
     EditText name, mobno, password;
-    TextView login;
+    LinearLayout login;
     Button signup;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     IMyService iservice;
@@ -39,7 +40,7 @@ public class SignUp_Activity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
         Retrofit retrofitclient = RetrofitClient.getInstance();
         iservice=retrofitclient.create(IMyService.class);
-        name = findViewById(R.id.name);
+        name = findViewById(R.id.username);
         mobno = findViewById(R.id.mobno);
         password = findViewById(R.id.password);
         login = findViewById(R.id.login);
