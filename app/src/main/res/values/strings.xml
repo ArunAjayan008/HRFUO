@@ -5,7 +5,7 @@
     <!--    Profile View Activity-->
     <string name="profile_name">Don Sebastian</string>
     <string name="designation">Assistant Technician</string>
-    <string name="profileimage_cont_desc">ProfileImage</string>
+    <string name="profileimage_cont_desc" translatable="false">ProfileImage</string>
     <string name="age_pva">Age</string>
     <string name="dob_pva">DOB</string>
     <string name="gender_pva">Gender</string>
@@ -27,17 +27,21 @@
     <!--    Service Details Activity-->
 
     <!--    Main Activity-->
-    <string name="profile_ma">പ്രൊഫൈൽ</string>
-    <string name="service_ma">സർവ്വീസ്‌</string>
-    <string name="salary_ma">സാലറി</string>
-    <string name="leave_ma">ലീവ്‌</string>
-    <string name="notifications_ma">അറിയിപ്പുകൾ</string>
-    <string name="others_ma">മറ്റുള്ളവ</string>
-    <string name="mob_no_logA">മൊബൈൽ നമ്പർ</string>
-    <string name="paswd_loga">പാസ്‌വേഡ്</string>
-    <string name="login_logA">ലോഗിൻ ചെയ്യുക</string>
-    <string name="forgot_pwd_loga">പാസ്‌വേഡ് മറന്നു പോയോ ?</string>
-    <string name="signup_logA">അക്കൗണ്ട്‌ തുടങ്ങുക</string>
+    <string name="salary_ma">Salary</string>
+    <string name="leave_ma">Leave</string>
+    <string name="notifications_ma">Information</string>
+    <string name="others_ma">Others</string>
+    <string name="mob_no_logA">Mobile number</string>
+    <string name="paswd_loga">Password</string>
+    <string name="login_logA">Login</string>
+    <string name="forgot_pwd_loga">Forgot password ?</string>
+    <string name="signup_logA">Don\'t have an account ? Create now</string>
+    <string name="profile_ma">Profile</string>
+    <string name="service_ma">Service</string>
+    <string name="name_signup">Name</string>
+    <string name="terms_n_conditions_signup">By creating an account, youa agree to the Terms and Use and Privacy policy</string>
+    <string name="create_ac_signup">Sign Up</string>
+    <string name="already_hav_ac_signup">Already have an account? Login now</string>
     <!--    Main Activity-->
 
 </resources>

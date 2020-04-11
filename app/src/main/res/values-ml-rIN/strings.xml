@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">HR FUO</string>
+    <string name="profile_name">"ഡോൺ സെബാസ്റ്റിൻ "</string>
+    <string name="designation">"അസി. ടെക്‌നീഷ്യൻ "</string>
+    <string name="age_pva">"വയസ്സ് "</string>
+    <string name="dob_pva">ജനന തിയ്യതി</string>
+    <string name="gender_pva">"ലിംഗം  "</string>
+    <string name="qualification_pva">"വിദ്യാഭ്യാസ യോഗ്യത "</string>
+    <string name="address_pva">"വിലാസം "</string>
+    <string name="no_data">രേഖകൾ ഇല്ല</string>
+    <string name="doj_sda">"സർവീസിൽ പ്രവേശിച്ച തിയ്യതി  "</string>
+    <string name="desig_on_join_sda">സർവീസിൽ പ്രവേശിച്ച പദവി</string>
+    <string name="current_desig_sda">"നിലവിലെ  പദവി  "</string>
+    <string name="dor_sda">"വിരമിക്കുന്ന തിയ്യതി "</string>
+    <string name="date_of_last_promotion_sda">"അവസാന പ്രൊമോഷൻ "</string>
+    <string name="date_of_next_promotion_sda">"അടുത്ത  പ്രൊമോഷൻ "</string>
+    <string name="service_details_sda">"ഉദ്യോഗ വിവരങ്ങൾ "</string>
+    <string name="profile_ma">"പ്രൊഫൈൽ "</string>
+    <string name="service_ma">സർവ്വീസ്‌</string>
+    <string name="salary_ma">സാലറി</string>
+    <string name="leave_ma">ലീവ്‌</string>
+    <string name="notifications_ma">അറിയിപ്പുകൾ</string>
+    <string name="others_ma">മറ്റുള്ളവ</string>
+    <string name="mob_no_logA">മൊബൈൽ നമ്പർ</string>
+    <string name="paswd_loga">പാസ്‌വേഡ്</string>
+    <string name="login_logA">ലോഗിൻ ചെയ്യുക</string>
+    <string name="forgot_pwd_loga">പാസ്‌വേഡ് മറന്നു പോയോ ?</string>
+    <string name="signup_logA">അക്കൗണ്ട്‌ തുടങ്ങുക</string>
+    <string name="name_signup">പേര്</string>
+    <string name="terms_n_conditions_signup">അക്കൗണ്ട് നിർമ്മിക്കുന്നതിലൂടെ താങ്കൾ ഞങ്ങളുടെ ഉപാധികൾക്കും നിബന്ധനകൾക്കും പൂർണ സമ്മതം നൽകുന്നതായി കണക്കാക്കുന്നതാണ്</string>
+    <string name="create_ac_signup">അക്കൗണ്ട് സൃഷ്ടിക്കാം</string>
+    <string name="already_hav_ac_signup">നിലവിൽ അക്കൗണ്ട് ഉണ്ടോ..? ലോഗിൻ ചെയ്യൂ</string>
+</resources>

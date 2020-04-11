@@ -48,7 +48,7 @@
             android:layout_marginEnd="24dp"
             android:background="@drawable/textbg"
             android:ems="10"
-            android:hint="പേര്"
+            android:hint="@string/name_signup"
             android:inputType="textPersonName"
             android:padding="12dp"
             android:textColor="@color/colorBrightWhite"
@@ -112,7 +112,7 @@
             android:focusable="true"
             android:gravity="center"
             android:padding="8dp"
-            android:text="അക്കൗണ്ട് നിർമ്മിക്കുന്നതിലൂടെ താങ്കൾ ഞങ്ങളുടെ ഉപാധികൾക്കും  നിബന്ധനകൾക്കും പൂർണ സമ്മതം നൽകുന്നതായി കണക്കാക്കുന്നതാണ്"
+            android:text="@string/terms_n_conditions_signup"
             android:textAlignment="gravity"
             android:textColor="@color/colorDimWhiten"
             android:textSize="12sp"
@@ -129,7 +129,7 @@
             android:layout_marginEnd="24dp"
             android:background="@drawable/btnbg"
             android:padding="0dp"
-            android:text="അക്കൗണ്ട് സൃഷ്ടിക്കാം"
+            android:text="@string/create_ac_signup"
             android:textColor="@color/colorWhite"
             android:textSize="16sp"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
@@ -178,7 +178,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="നിലവിൽ അക്കൗണ്ട് ഉണ്ടോ..? ലോഗിൻ ചെയ്യൂ"
+            android:text="@string/already_hav_ac_signup"
             android:textColor="@color/text_color" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
