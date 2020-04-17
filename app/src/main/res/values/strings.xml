@@ -42,6 +42,10 @@
     <string name="terms_n_conditions_signup">By creating an account, youa agree to the Terms and Use and Privacy policy</string>
     <string name="create_ac_signup">Sign Up</string>
     <string name="already_hav_ac_signup">Already have an account? Login now</string>
+    <string name="add_word">Add Word</string>
+    <string name="hint">Word</string>
+    <string name="Save">button_save</string>
+    <string name="empty_not_saved">Not Saved</string>
     <!--    Main Activity-->
 
 </resources>

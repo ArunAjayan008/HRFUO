@@ -12,23 +12,24 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Start_Language_Activity"></activity>
-        <activity android:name=".ViewSalaryActivity" />
-        <activity android:name=".SignUp_Activity">
+        <activity android:name=".Activity.Test"></activity>
+        <activity android:name=".Activity.Start_Language_Activity" />
+        <activity android:name=".Activity.ViewSalaryActivity" />
+        <activity android:name=".Activity.SignUp_Activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Login_Activity" />
-        <activity android:name=".OthersActivity" />
-        <activity android:name=".LeaveActivity" />
-        <activity android:name=".SalaryActivity" />
-        <activity android:name=".NotificationListActivity" />
-        <activity android:name=".ServiceDetailsActivity" />
-        <activity android:name=".ProfileViewActivity" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".Activity.Login_Activity" />
+        <activity android:name=".Activity.OthersActivity" />
+        <activity android:name=".Activity.LeaveActivity" />
+        <activity android:name=".Activity.SalaryActivity" />
+        <activity android:name=".Activity.NotificationListActivity" />
+        <activity android:name=".Activity.ServiceDetailsActivity" />
+        <activity android:name=".Activity.ProfileViewActivity" />
+        <activity android:name=".Activity.MainActivity" />
     </application>
 
 </manifest>

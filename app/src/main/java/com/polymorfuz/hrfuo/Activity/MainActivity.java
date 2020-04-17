@@ -1,4 +1,4 @@
-package com.polymorfuz.hrfuo;
+package com.polymorfuz.hrfuo.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
+
+import com.polymorfuz.hrfuo.R;
 
 public class MainActivity extends AppCompatActivity {
 CardView profile_card,services_card,salary_card,leave_card,notify_card,other_card;

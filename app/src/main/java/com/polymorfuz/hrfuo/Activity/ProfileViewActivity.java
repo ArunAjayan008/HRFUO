@@ -1,4 +1,4 @@
-package com.polymorfuz.hrfuo;
+package com.polymorfuz.hrfuo.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.polymorfuz.hrfuo.R;
 import com.polymorfuz.hrfuo.Retrofit.Api;
 import com.polymorfuz.hrfuo.model.Profile;
 

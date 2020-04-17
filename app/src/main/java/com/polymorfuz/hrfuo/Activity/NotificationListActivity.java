@@ -1,4 +1,4 @@
-package com.polymorfuz.hrfuo;
+package com.polymorfuz.hrfuo.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.widget.LinearLayout;
 
 import com.polymorfuz.hrfuo.Adapter.NotificationAdapter;
+import com.polymorfuz.hrfuo.R;
 
 public class NotificationListActivity extends AppCompatActivity {
     NotificationAdapter adapter;

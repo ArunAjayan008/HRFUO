@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/local_bg"
-    tools:context=".Start_Language_Activity">
+    tools:context=".Activity.Start_Language_Activity">
 <RelativeLayout
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">

@@ -1,4 +1,4 @@
-package com.polymorfuz.hrfuo;
+package com.polymorfuz.hrfuo.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import com.polymorfuz.hrfuo.R;
 
 public class SalaryActivity extends AppCompatActivity {
 Button buttonview;
