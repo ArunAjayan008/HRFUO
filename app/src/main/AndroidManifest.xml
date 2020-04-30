@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.Test"></activity>
+        <activity android:name=".Activity.Test"/>
         <activity android:name=".Activity.Start_Language_Activity" />
         <activity android:name=".Activity.ViewSalaryActivity" />
         <activity android:name=".Activity.SignUp_Activity">

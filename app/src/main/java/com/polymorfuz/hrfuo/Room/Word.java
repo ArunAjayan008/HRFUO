@@ -1,4 +1,4 @@
-package com.polymorfuz.hrfuo;
+package com.polymorfuz.hrfuo.Room;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;

@@ -1,4 +1,4 @@
-package com.polymorfuz.hrfuo;
+package com.polymorfuz.hrfuo.Room;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;

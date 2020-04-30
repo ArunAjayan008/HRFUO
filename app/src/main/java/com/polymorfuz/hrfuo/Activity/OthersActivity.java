@@ -9,14 +9,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.polymorfuz.hrfuo.Adapter.WordListAdapter;
 import com.polymorfuz.hrfuo.R;
-import com.polymorfuz.hrfuo.Word;
-import com.polymorfuz.hrfuo.WordViewModel;
+import com.polymorfuz.hrfuo.Room.Word;
+import com.polymorfuz.hrfuo.Room.WordViewModel;
 
 import java.util.List;
 

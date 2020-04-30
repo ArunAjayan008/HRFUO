@@ -1,4 +1,4 @@
-package com.polymorfuz.hrfuo;
+package com.polymorfuz.hrfuo.Room;
 
 import android.app.Application;
 
@@ -19,6 +19,5 @@ public class WordViewModel extends AndroidViewModel {
         mAllWords = mRepository.getAllWords();
     }
     public LiveData<List<Word>> getAllWords() { return mAllWords; }
-
     public void insert(Word word) { mRepository.insert(word); }
 }

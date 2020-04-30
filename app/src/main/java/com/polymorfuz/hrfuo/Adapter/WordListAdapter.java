@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.polymorfuz.hrfuo.R;
-import com.polymorfuz.hrfuo.Word;
+import com.polymorfuz.hrfuo.Room.Word;
 
 import java.util.List;
 
