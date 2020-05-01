@@ -7,6 +7,8 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.database.Observable;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,17 +27,24 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ProfileViewActivity extends AppCompatActivity {
-TextView nametxt,agetxt,gendertxt,qualtxt;
-ProfileViewModel viewModel;
+    TextView nametxt, agetxt, gendertxt, qualtxt;
+    ProfileViewModel viewModel;
+    Button add;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_view);
-        nametxt=findViewById(R.id.profilename_pva_txt);
-        agetxt=findViewById(R.id.age_pva_txt);
-        gendertxt=findViewById(R.id.gender_pva_txt);
-        qualtxt=findViewById(R.id.qual_pva_txt);
-        viewModel=new ViewModelProvider(this).get(ProfileViewModel.class);
+        nametxt = findViewById(R.id.profilename_pva_txt);
+        agetxt = findViewById(R.id.age_pva_txt);
+        gendertxt = findViewById(R.id.gender_pva_txt);
+        qualtxt = findViewById(R.id.qual_pva_txt);
+        add = findViewById(R.id.add);
+        add.setOnClickListener(v -> {
+            ProfileDB db = new ProfileDB("Soman", "15", "Male", "Mtech","Assistant Technician",13-05-1997,"Soman Nivas Uganda");
+            viewModel.insert(db);
+        });
+        viewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
         viewModel.getprofiledata().observe(this, new Observer<List<ProfileDB>>() {
             @Override
             public void onChanged(List<ProfileDB> profileDBS) {
@@ -45,12 +54,14 @@ ProfileViewModel viewModel;
 //        fetchData();
     }
 
-    private void setData(List<ProfileDB> db){
-        ProfileDB data=db.get(0);
-        nametxt.setText(data.getEmpname());
-        agetxt.setText(data.getAge());
-        gendertxt.setText(data.getGender());
-        qualtxt.setText(data.getQualification());
+    private void setData(List<ProfileDB> db) {
+        if (db.size() > 0) {
+            ProfileDB data = db.get(0);
+            nametxt.setText(data.getEmpname());
+            agetxt.setText(data.getAge());
+            gendertxt.setText(data.getGender());
+            qualtxt.setText(data.getQualification());
+        }
     }
 
     private void fetchData() {
