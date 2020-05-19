@@ -45,7 +45,7 @@ public class SignUp_Activity extends AppCompatActivity {
         setAppLocale("ml");
         setContentView(R.layout.activity_sign_up);
         Retrofit retrofitclient = RetrofitClient.getInstance();
-        iservice=retrofitclient.create(IMyService.class);
+        iservice = retrofitclient.create(IMyService.class);
         name = findViewById(R.id.username);
         mobno = findViewById(R.id.mobno);
         password = findViewById(R.id.password);
@@ -67,13 +67,14 @@ public class SignUp_Activity extends AppCompatActivity {
         });
     }
 
-    private void setAppLocale(String localcode){
-        Resources res=getResources();
-        DisplayMetrics dm=res.getDisplayMetrics();
-        Configuration conf=res.getConfiguration();
+    private void setAppLocale(String localcode) {
+        Resources res = getResources();
+        DisplayMetrics dm = res.getDisplayMetrics();
+        Configuration conf = res.getConfiguration();
         conf.setLocale(new Locale(localcode.toLowerCase()));
-        res.updateConfiguration(conf,dm);
+        res.updateConfiguration(conf, dm);
     }
+
     private void registerUser(String name, String mob, String pwd) {
         if (TextUtils.isEmpty(name)) {
             Toast.makeText(this, "Email cannot be empty", Toast.LENGTH_LONG).show();

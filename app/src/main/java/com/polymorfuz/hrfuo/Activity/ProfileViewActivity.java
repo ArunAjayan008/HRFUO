@@ -27,7 +27,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ProfileViewActivity extends AppCompatActivity {
-    TextView nametxt, agetxt, gendertxt, qualtxt;
+    TextView nametxt, agetxt, gendertxt, qualtxt, dobtxt,addrtxt;
     ProfileViewModel viewModel;
     Button add;
 
@@ -39,19 +39,21 @@ public class ProfileViewActivity extends AppCompatActivity {
         agetxt = findViewById(R.id.age_pva_txt);
         gendertxt = findViewById(R.id.gender_pva_txt);
         qualtxt = findViewById(R.id.qual_pva_txt);
+        dobtxt = findViewById(R.id.dob_pva_txt);
+        addrtxt = findViewById(R.id.addr_pva_txt);
         add = findViewById(R.id.add);
         add.setOnClickListener(v -> {
-            ProfileDB db = new ProfileDB("Soman", "15", "Male", "Mtech","Assistant Technician",13-05-1997,"Soman Nivas Uganda");
-            viewModel.insert(db);
+//            ProfileDB db = new ProfileDB("Soman", "15", "Male", "Mtech", "15-02-2017");
+//            viewModel.insert(db);
         });
-        viewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
-        viewModel.getprofiledata().observe(this, new Observer<List<ProfileDB>>() {
-            @Override
-            public void onChanged(List<ProfileDB> profileDBS) {
-                setData(profileDBS);
-            }
-        });
-//        fetchData();
+//        viewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
+//        viewModel.getprofiledata().observe(this, new Observer<List<ProfileDB>>() {
+//            @Override
+//            public void onChanged(List<ProfileDB> profileDBS) {
+//                setData(profileDBS);
+//            }
+//        });
+        fetchData();
     }
 
     private void setData(List<ProfileDB> db) {
@@ -61,6 +63,7 @@ public class ProfileViewActivity extends AppCompatActivity {
             agetxt.setText(data.getAge());
             gendertxt.setText(data.getGender());
             qualtxt.setText(data.getQualification());
+            dobtxt.setText(data.getDob());
         }
     }
 
@@ -79,15 +82,19 @@ public class ProfileViewActivity extends AppCompatActivity {
             public void onResponse(Call<List<Profile>> call, Response<List<Profile>> response) {
                 List<Profile> adslist = response.body();
 
-                String name = adslist.get(0).getName();
+                String name = adslist.get(0).getMobno();
                 String age = adslist.get(0).getAge();
                 String gender = adslist.get(0).getGender();
-                String qualify = adslist.get(0).getQualify();
+                String qualify = adslist.get(0).getEdu_qual();
+                String address = adslist.get(0).getAddress();
+                String dob = adslist.get(0).getDob();
 
                 nametxt.setText(name);
                 agetxt.setText(age);
+                dobtxt.setText(dob);
                 gendertxt.setText(gender);
                 qualtxt.setText(qualify);
+                addrtxt.setText(address);
             }
 
             @Override

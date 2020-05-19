@@ -9,9 +9,9 @@ import retrofit2.http.GET;
 
 public interface Api {
 
-    String BASE_URL = "http://http://192.168.0.4:3000/";
+    String BASE_URL = "http://192.168.1.6:3000";
 
-    @GET("/profile")
+    @GET("/getprofile?id=1234")
     Call<List<Profile>> getstatus();
 
 }

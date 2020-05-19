@@ -4,48 +4,47 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Profile {
-    @SerializedName("Name")
+    @SerializedName("mobno")
     @Expose
-    private String Name;
-    @SerializedName("Age")
+    private String mobno;
+    @SerializedName("age")
     @Expose
-    private String Age;
-    @SerializedName("Gender")
+    private String age;
+    @SerializedName("dob")
     @Expose
-    private String Gender;
-    @SerializedName("Qualify")
-    @Expose
-    private String Qualify;
+    private String dob;
 
-    public String getName() {
-        return Name;
-    }
+    @SerializedName("gender")
+    @Expose
+    private String gender;
+    @SerializedName("edu_qual")
+    @Expose
+    private String edu_qual;
+    @SerializedName("address")
+    @Expose
+    private String address;
 
-    public void setName(String name) {
-        Name = name;
+    public String getMobno() {
+        return mobno;
     }
 
     public String getAge() {
-        return Age;
+        return age;
     }
 
-    public void setAge(String age) {
-        Age = age;
+    public String getDob() {
+        return dob;
     }
 
     public String getGender() {
-        return Gender;
+        return gender;
     }
 
-    public void setGender(String gender) {
-        Gender = gender;
+    public String getEdu_qual() {
+        return edu_qual;
     }
 
-    public String getQualify() {
-        return Qualify;
-    }
-
-    public void setQualify(String qualify) {
-        Qualify = qualify;
+    public String getAddress() {
+        return address;
     }
 }
