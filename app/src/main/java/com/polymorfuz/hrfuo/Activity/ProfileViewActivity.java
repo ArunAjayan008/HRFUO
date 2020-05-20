@@ -75,14 +75,14 @@ public class ProfileViewActivity extends AppCompatActivity {
 
         Api api = retrofit.create(Api.class);
 
-        Call<List<Profile>> call = api.getstatus();
+        Call<List<Profile>> call = api.getprofile();
 
         call.enqueue(new Callback<List<Profile>>() {
             @Override
             public void onResponse(Call<List<Profile>> call, Response<List<Profile>> response) {
                 List<Profile> adslist = response.body();
 
-                String name = adslist.get(0).getMobno();
+                String name = adslist.get(0).getDesig();
                 String age = adslist.get(0).getAge();
                 String gender = adslist.get(0).getGender();
                 String qualify = adslist.get(0).getEdu_qual();

@@ -1,6 +1,9 @@
 package com.polymorfuz.hrfuo.Retrofit;
 
+import com.polymorfuz.hrfuo.model.Leave;
+import com.polymorfuz.hrfuo.model.Notifications;
 import com.polymorfuz.hrfuo.model.Profile;
+import com.polymorfuz.hrfuo.model.ServiceModel;
 
 import java.util.List;
 
@@ -11,8 +14,17 @@ public interface Api {
 
     String BASE_URL = "http://192.168.1.6:3000";
 
-    @GET("/getprofile?id=1234")
-    Call<List<Profile>> getstatus();
+    @GET("/getprofile?id=44")
+    Call<List<Profile>> getprofile();
+
+    @GET("/getservice?id=44")
+    Call<List<ServiceModel>> getservice();
+
+    @GET("/getleave?id=44")
+    Call<List<Leave>> getleave();
+
+    @GET("/getnotify?id=44")
+    Call<List<Notifications>> getnotify();
 
 }
 

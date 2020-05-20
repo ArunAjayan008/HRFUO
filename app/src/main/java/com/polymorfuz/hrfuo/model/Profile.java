@@ -4,9 +4,9 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Profile {
-    @SerializedName("mobno")
+    @SerializedName("desig")
     @Expose
-    private String mobno;
+    private String desig;
     @SerializedName("age")
     @Expose
     private String age;
@@ -24,8 +24,8 @@ public class Profile {
     @Expose
     private String address;
 
-    public String getMobno() {
-        return mobno;
+    public String getDesig() {
+        return desig;
     }
 
     public String getAge() {
