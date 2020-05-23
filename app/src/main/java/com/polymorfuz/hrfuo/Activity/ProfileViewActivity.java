@@ -27,7 +27,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ProfileViewActivity extends AppCompatActivity {
-    TextView nametxt, agetxt, gendertxt, qualtxt, dobtxt,addrtxt;
+    TextView nametxt, agetxt, gendertxt, qualtxt, dobtxt, addrtxt;
     ProfileViewModel viewModel;
     Button add;
 
@@ -81,20 +81,12 @@ public class ProfileViewActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Profile>> call, Response<List<Profile>> response) {
                 List<Profile> adslist = response.body();
-
-                String name = adslist.get(0).getDesig();
-                String age = adslist.get(0).getAge();
-                String gender = adslist.get(0).getGender();
-                String qualify = adslist.get(0).getEdu_qual();
-                String address = adslist.get(0).getAddress();
-                String dob = adslist.get(0).getDob();
-
-                nametxt.setText(name);
-                agetxt.setText(age);
-                dobtxt.setText(dob);
-                gendertxt.setText(gender);
-                qualtxt.setText(qualify);
-                addrtxt.setText(address);
+                nametxt.setText(adslist.get(0).getDesig());
+                agetxt.setText(adslist.get(0).getAge());
+                dobtxt.setText(adslist.get(0).getDob());
+                gendertxt.setText(adslist.get(0).getGender());
+                qualtxt.setText(adslist.get(0).getEdu_qual());
+                addrtxt.setText(adslist.get(0).getAddress());
             }
 
             @Override

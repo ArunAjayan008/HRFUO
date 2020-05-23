@@ -5,125 +5,142 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activity.LeaveActivity">
-    <include layout="@layout/appbar"/>
+    <include layout="@layout/appbar"
+        android:id="@+id/appbar"/>
 
-    <RelativeLayout
-        android:layout_width="0dp"
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar">
+        app:layout_constraintTop_toBottomOf="@+id/appbar"
+        app:layout_constraintBottom_toBottomOf="parent">
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tablayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tabMode="fixed"
+        app:tabGravity="fill"
+        app:tabTextColor="@color/colorBlack"
+        android:minHeight="?attr/actionBarSize"/>
+    </androidx.viewpager.widget.ViewPager>
+<!--    <RelativeLayout-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="0dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/toolbar">-->
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="25dp"
-            android:orientation="vertical"
-            android:weightSum="2">
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="25dp"-->
+<!--            android:orientation="vertical"-->
+<!--            android:weightSum="2">-->
 
-            <TableRow
-                android:id="@+id/frstrow"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:weightSum="2"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+<!--            <TableRow-->
+<!--                android:id="@+id/frstrow"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:weightSum="2"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent">-->
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/profile_btn_ma"
-                    android:layout_width="0dp"
-                    android:layout_height="150dp"
-                    android:layout_margin="8dp"
-                    android:layout_weight="1"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?android:attr/selectableItemBackground">
+<!--                <androidx.cardview.widget.CardView-->
+<!--                    android:id="@+id/profile_btn_ma"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="150dp"-->
+<!--                    android:layout_margin="8dp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:clickable="true"-->
+<!--                    android:focusable="true"-->
+<!--                    android:foreground="?android:attr/selectableItemBackground">-->
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:drawableTop="@android:drawable/ic_input_add"
-                        android:text="Available leaves"
-                        android:textColor="@color/colorBlack" />
-                </androidx.cardview.widget.CardView>
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_gravity="center"-->
+<!--                        android:drawableTop="@android:drawable/ic_input_add"-->
+<!--                        android:text="Available leaves"-->
+<!--                        android:textColor="@color/colorBlack" />-->
+<!--                </androidx.cardview.widget.CardView>-->
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/service_btn_ma"
-                    android:layout_width="0dp"
-                    android:layout_height="150dp"
-                    android:layout_margin="8dp"
-                    android:layout_weight="1"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?android:attr/selectableItemBackground">
+<!--                <androidx.cardview.widget.CardView-->
+<!--                    android:id="@+id/service_btn_ma"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="150dp"-->
+<!--                    android:layout_margin="8dp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:clickable="true"-->
+<!--                    android:focusable="true"-->
+<!--                    android:foreground="?android:attr/selectableItemBackground">-->
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:drawableTop="@android:drawable/ic_btn_speak_now"
-                        android:text="Taken Leave"
-                        android:textColor="@color/colorBlack" />
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_gravity="center"-->
+<!--                        android:drawableTop="@android:drawable/ic_btn_speak_now"-->
+<!--                        android:text="Taken Leave"-->
+<!--                        android:textColor="@color/colorBlack" />-->
 
-                </androidx.cardview.widget.CardView>
+<!--                </androidx.cardview.widget.CardView>-->
 
-            </TableRow>
+<!--            </TableRow>-->
 
-            <TableRow
-                android:id="@+id/secndrow"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:weightSum="2"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/frstrow">
+<!--            <TableRow-->
+<!--                android:id="@+id/secndrow"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:weightSum="2"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/frstrow">-->
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/salary_btn_ma"
-                    android:layout_width="0dp"
-                    android:layout_height="150dp"
-                    android:layout_margin="8dp"
-                    android:layout_weight="1"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?android:attr/selectableItemBackground">
+<!--                <androidx.cardview.widget.CardView-->
+<!--                    android:id="@+id/salary_btn_ma"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="150dp"-->
+<!--                    android:layout_margin="8dp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:clickable="true"-->
+<!--                    android:focusable="true"-->
+<!--                    android:foreground="?android:attr/selectableItemBackground">-->
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:drawableTop="@android:drawable/ic_lock_idle_low_battery"
-                        android:drawableTint="@color/cardview_dark_background"
-                        android:text="@string/salary_ma"
-                        android:textColor="@color/colorBlack" />
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_gravity="center"-->
+<!--                        android:drawableTop="@android:drawable/ic_lock_idle_low_battery"-->
+<!--                        android:drawableTint="@color/cardview_dark_background"-->
+<!--                        android:text="Holiday List"-->
+<!--                        android:textColor="@color/colorBlack" />-->
 
-                </androidx.cardview.widget.CardView>
+<!--                </androidx.cardview.widget.CardView>-->
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/leave_btn_ma"
-                    android:layout_width="0dp"
-                    android:layout_height="150dp"
-                    android:layout_margin="8dp"
-                    android:layout_weight="1"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?android:attr/selectableItemBackground">
+<!--                <androidx.cardview.widget.CardView-->
+<!--                    android:id="@+id/leave_btn_ma"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="150dp"-->
+<!--                    android:layout_margin="8dp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:clickable="true"-->
+<!--                    android:focusable="true"-->
+<!--                    android:foreground="?android:attr/selectableItemBackground">-->
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:drawableTop="@android:drawable/ic_media_rew"
-                        android:drawableTint="@color/cardview_dark_background"
-                        android:text="@string/leave_ma"
-                        android:textColor="@color/colorBlack" />
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_gravity="center"-->
+<!--                        android:drawableTop="@android:drawable/ic_media_rew"-->
+<!--                        android:drawableTint="@color/cardview_dark_background"-->
+<!--                        android:text="@string/leave_ma"-->
+<!--                        android:textColor="@color/colorBlack" />-->
 
-                </androidx.cardview.widget.CardView>
-            </TableRow>
+<!--                </androidx.cardview.widget.CardView>-->
+<!--            </TableRow>-->
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </RelativeLayout>
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+<!--    </RelativeLayout>-->
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,39 +4,39 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Leave {
-    @SerializedName("CL")
+    @SerializedName("cl")
     @Expose
-    private String CL;
-    @SerializedName("EL")
+    private int cl;
+    @SerializedName("el")
     @Expose
-    private String EL;
-    @SerializedName("HPL")
+    private int el;
+    @SerializedName("hpl")
     @Expose
-    private String HPL;
-    @SerializedName("ESI")
+    private int hpl;
+    @SerializedName("esi")
     @Expose
-    private String ESI;
-    @SerializedName("Absent")
+    private int esi;
+    @SerializedName("absent")
     @Expose
-    private String Absent;
+    private int absent;
 
-    public String getCL() {
-        return CL;
+    public int getCl() {
+        return cl;
     }
 
-    public String getEL() {
-        return EL;
+    public int getEl() {
+        return el;
     }
 
-    public String getHPL() {
-        return HPL;
+    public int getHpl() {
+        return hpl;
     }
 
-    public String getESI() {
-        return ESI;
+    public int getEsi() {
+        return esi;
     }
 
-    public String getAbsent() {
-        return Absent;
+    public int getAbsent() {
+        return absent;
     }
 }

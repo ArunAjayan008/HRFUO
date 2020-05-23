@@ -4,51 +4,60 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class ServiceModel {
-    @SerializedName("Doj")
+
+    @SerializedName("userid")
+    @Expose
+    private String userid;
+
+    @SerializedName("doj")
     @Expose
     private String doj;
 
-    @SerializedName("Desig on join")
+    @SerializedName("desig_on_join")
     @Expose
-    private String desig_onjoin;
+    private String desig_on_join;
 
-    @SerializedName("Current desig")
+    @SerializedName("current_desig")
     @Expose
-    private String curnt_desig;
+    private String current_desig;
 
-    @SerializedName("Dor")
+    @SerializedName("dor")
     @Expose
     private String dor;
 
-    @SerializedName("Date of last prom")
+    @SerializedName("date_of_lastprom")
     @Expose
-    private String last_prom;
+    private String date_of_lastprom;
 
-    @SerializedName("Next promotion")
+    @SerializedName("next_promotion")
     @Expose
-    private String next_prom;
+    private String next_promotion;
+
+    public String getUserid() {
+        return userid;
+    }
 
     public String getDoj() {
         return doj;
     }
 
-    public String getDesig_onjoin() {
-        return desig_onjoin;
+    public String getDesig_on_join() {
+        return desig_on_join;
     }
 
-    public String getCurnt_desig() {
-        return curnt_desig;
+    public String getCurrent_desig() {
+        return current_desig;
     }
 
     public String getDor() {
         return dor;
     }
 
-    public String getLast_prom() {
-        return last_prom;
+    public String getDate_of_lastprom() {
+        return date_of_lastprom;
     }
 
-    public String getNext_prom() {
-        return next_prom;
+    public String getNext_promotion() {
+        return next_promotion;
     }
 }
