@@ -1,5 +1,6 @@
 package com.polymorfuz.hrfuo.Retrofit;
 
+import com.polymorfuz.hrfuo.model.HolidayModel;
 import com.polymorfuz.hrfuo.model.Leave;
 import com.polymorfuz.hrfuo.model.Notifications;
 import com.polymorfuz.hrfuo.model.Profile;
@@ -25,6 +26,9 @@ public interface Api {
 
     @GET("/getnotify?id=44")
     Call<List<Notifications>> getnotify();
+
+    @GET("/getholist?id=44")
+    Call<List<HolidayModel>> getholidays();
 
 }
 

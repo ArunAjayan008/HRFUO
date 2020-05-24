@@ -27,13 +27,13 @@ public class LeaveActivity extends AppCompatActivity implements TabLayout.OnTabS
         tabLayout = findViewById(R.id.tablayout);
         tabLayout.addTab(tabLayout.newTab().setText("Leaves"));
         tabLayout.addTab(tabLayout.newTab().setText("Holidays"));
-        Pager adapter = new Pager(getSupportFragmentManager(), tabLayout.getTabCount());
+        PagerView adapter = new PagerView(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
     }
 
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
-        viewPager.setCurrentItem(tab.getPosition());
+
     }
 
     @Override
@@ -46,11 +46,11 @@ public class LeaveActivity extends AppCompatActivity implements TabLayout.OnTabS
 
     }
 
-    public class Pager extends FragmentStatePagerAdapter {
+    public class PagerView extends FragmentStatePagerAdapter {
 
         int tabs;
 
-        public Pager(@NonNull FragmentManager fm, int behavior) {
+        public PagerView(@NonNull FragmentManager fm, int behavior) {
             super(fm, behavior);
             this.tabs = behavior;
         }
@@ -89,51 +89,3 @@ public class LeaveActivity extends AppCompatActivity implements TabLayout.OnTabS
         }
     }
 }
-
-//        //integer to count number of tabs
-//        int tabCount;
-//
-//        //Constructor to the class
-//        public Pager(FragmentManager fm, int tabCount) {
-//            super(fm);
-//            //Initializing tab count
-//            this.tabCount = tabCount;
-//        }
-//
-//        //Overriding method getItem
-//        @Override
-//        public com.polymorfuz.hrfuo.Fragment getItem(int position) {
-//            //Returning the current tabs
-//            switch (position) {
-//                case 0:
-//                    CustomerTabFragment tab1 = new CustomerTabFragment();
-//                    return tab1;
-//                case 1:
-//                    MembersTabFragment tab2 = new MembersTabFragment();
-//                    return tab2;
-//            }
-//            return null;
-//        }
-//
-//        //Overriden method getCount to get the number of tabs
-//        @Override
-//        public int getCount() {
-//            return tabCount;
-//        }
-//
-//        @Nullable
-//        @Override
-//        public CharSequence getPageTitle(int position) {
-//            String title = null;
-//            switch (position) {
-//                case 0:
-//                    title = "Customers";
-//                    return title;
-//                case 1:
-//                    title = "Members";
-//                    return title;
-//            }
-//            return null;
-//        }
-//    }
-

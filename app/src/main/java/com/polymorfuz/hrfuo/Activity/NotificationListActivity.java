@@ -13,19 +13,16 @@ import com.polymorfuz.hrfuo.R;
 public class NotificationListActivity extends AppCompatActivity {
     NotificationAdapter adapter;
     RecyclerView notifycycler;
-    LinearLayout recyler_layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification_list);
-        recyler_layout=findViewById(R.id.recyclerlayout);
         notifycycler=findViewById(R.id.notify_recycler);
         LinearLayoutManager layoutManager = new LinearLayoutManager(NotificationListActivity.this);
         layoutManager.setStackFromEnd(true);
         layoutManager.setReverseLayout(true);
-        RecyclerView.LayoutManager recylmgr=layoutManager;
-        notifycycler.setLayoutManager(recylmgr);
+        notifycycler.setLayoutManager(layoutManager);
         adapter=new NotificationAdapter(getApplicationContext());
         notifycycler.setAdapter(adapter);
     }

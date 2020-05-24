@@ -31,7 +31,7 @@
                 android:gravity="center"
                 android:text="Leaves Taken"
                 android:textColor="@color/colorBlack"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:layout_width="0dp"
@@ -40,7 +40,7 @@
                 android:gravity="center"
                 android:text="Balance"
                 android:textColor="@color/colorBlack"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -57,26 +57,28 @@
                 android:gravity="start"
                 android:text="CL"
                 android:textColor="@color/colorBlack"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
             <TextView
+                android:id="@+id/cl_taken_leavfrag"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.1"
                 android:gravity="center"
                 android:hint="0"
                 android:textColor="@color/colorBlack"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
 
             <TextView
+                android:id="@+id/cl_bal"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.1"
                 android:gravity="center"
                 android:hint="0"
                 android:textColor="@color/colorBlack"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -93,26 +95,28 @@
                 android:gravity="start"
                 android:text="EL"
                 android:textColor="@color/colorBlack"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
             <TextView
+                android:id="@+id/el_taken_leavfrag"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.1"
                 android:gravity="center"
                 android:hint="0"
                 android:textColor="@color/colorBlack"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
 
             <TextView
+                android:id="@+id/el_bal"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.1"
                 android:gravity="center"
                 android:hint="0"
                 android:textColor="@color/colorBlack"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -129,26 +133,28 @@
                 android:gravity="start"
                 android:text="HPL"
                 android:textColor="@color/colorBlack"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
             <TextView
+                android:id="@+id/hpl_taken_leavfrag"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.1"
                 android:gravity="center"
                 android:hint="0"
                 android:textColor="@color/colorBlack"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
 
             <TextView
+                android:id="@+id/hpl_bal"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.1"
                 android:gravity="center"
                 android:hint="0"
                 android:textColor="@color/colorBlack"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -165,26 +171,18 @@
                 android:gravity="start"
                 android:text="ESI"
                 android:textColor="@color/colorBlack"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
             <TextView
+                android:id="@+id/esi_taken_leavfrag"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.1"
                 android:gravity="center"
                 android:hint="0"
                 android:textColor="@color/colorBlack"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.1"
-                android:gravity="center"
-                android:hint="0"
-                android:textColor="@color/colorBlack"
-                android:textSize="20sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -201,26 +199,19 @@
                 android:gravity="start"
                 android:text="Absent"
                 android:textColor="@color/colorBlack"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
             <TextView
+                android:id="@+id/absent_leavfrag"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.1"
                 android:gravity="center"
                 android:hint="0"
                 android:textColor="@color/colorBlack"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.1"
-                android:gravity="center"
-                android:hint="0"
-                android:textColor="@color/colorBlack"
-                android:textSize="20sp" />
 
         </LinearLayout>
 
@@ -243,26 +234,28 @@
                 android:text="Total"
                 android:layout_weight="0.8"
                 android:textColor="@color/colorBlack"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
             <TextView
+                android:id="@+id/total_taken"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.1"
                 android:gravity="center"
                 android:hint="0"
                 android:textColor="@color/colorBlack"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
 
             <TextView
+                android:id="@+id/balance_leav"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.1"
                 android:gravity="center"
                 android:hint="0"
                 android:textColor="@color/colorBlack"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
         </LinearLayout>
 
