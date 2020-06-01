@@ -39,12 +39,9 @@ public class HolidayFragment extends Fragment {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_holiday, container, false);
         holiday_recycler=view.findViewById(R.id.holiday_recycler);
-        fetchdata();
         LinearLayoutManager lmgr=new LinearLayoutManager(getContext());
-        RecyclerView.LayoutManager rmgr=lmgr;
-        holiday_recycler.setLayoutManager(rmgr);
-        adapter=new HolidayAdapter(getContext(),holidayModels);
-        holiday_recycler.setAdapter(adapter);
+        holiday_recycler.setLayoutManager(lmgr);
+        fetchdata();
         return view;
     }
 
@@ -61,6 +58,8 @@ public class HolidayFragment extends Fragment {
             @Override
             public void onResponse(Call<List<HolidayModel>> call, Response<List<HolidayModel>> response) {
                 holidayModels=response.body();
+                adapter=new HolidayAdapter(getContext(),holidayModels);
+                holiday_recycler.setAdapter(adapter);
             }
 
             @Override

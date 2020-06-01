@@ -55,7 +55,7 @@ public class LeaveActivity extends AppCompatActivity implements TabLayout.OnTabS
             this.tabs = behavior;
         }
 
-        @NonNull
+
         @Override
         public Fragment getItem(int position) {
             switch (position) {
@@ -64,8 +64,8 @@ public class LeaveActivity extends AppCompatActivity implements TabLayout.OnTabS
                 case 1:
                     return new HolidayFragment();
             }
-            return null;
 
+return null;
         }
 
         @Override
@@ -76,7 +76,7 @@ public class LeaveActivity extends AppCompatActivity implements TabLayout.OnTabS
         @Nullable
         @Override
         public CharSequence getPageTitle(int position) {
-            String title = null;
+            String title;
             switch (position) {
                 case 0:
                     title = "Leaves";

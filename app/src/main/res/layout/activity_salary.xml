@@ -10,51 +10,676 @@
         android:id="@+id/include"
         layout="@layout/appbar" />
 
-    <Spinner
-    android:id="@+id/spinner"
-    android:layout_width="0dp"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="24dp"
-    android:layout_marginTop="8dp"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/textView1" />
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
+    <ScrollView
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginStart="24dp"
-        android:text="Select Month"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include" />
-    <Spinner
-    android:id="@+id/spinner2"
-    android:layout_width="0dp"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="24dp"
-    android:layout_marginTop="8dp"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginStart="24dp"
-        android:text="Select Year"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner" />
-
-    <Button
-        android:id="@+id/buttonView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="View"
-        android:background="@drawable/btnbg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner2" />
+        app:layout_constraintTop_toBottomOf="@+id/include">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/l1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:weightSum="2"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:text="Select Year" />
+
+                <Spinner
+                    android:id="@+id/spin_year"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:layout_marginStart="25dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                app:layout_constraintTop_toBottomOf="@+id/l1"
+                tools:layout_editor_absoluteX="15dp">
+
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:text="Select Month" />
+
+                <Spinner
+                    android:id="@+id/spin_mnth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:layout_marginStart="25dp" />
+
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/buttonsubmit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/btnbg"
+                android:clickable="true"
+                android:text="Submit" />
+
+            <TableLayout
+                android:id="@+id/tableLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp">
+
+                <TableRow
+                    android:id="@+id/tableRow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="Earnings"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textColor="@android:color/black" />
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/cell_shape"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="Deductions"
+                         />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/cell_shape"
+                    android:weightSum="4">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        
+                        android:padding="10dp"
+                        android:text="Basic"
+                        
+                        android:textColor="@android:color/black" />
+
+
+                    <TextView
+                        android:id="@+id/basic_txt_salact"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        
+                        android:gravity="end"
+                        android:hint="0.00"
+                        android:padding="10dp"
+                        
+                        android:textColor="@android:color/black" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        
+                        android:gravity="start"
+                        android:padding="10dp"
+                        android:text="EPF"
+                        
+                        android:textColor="@android:color/black" />
+
+                    <TextView
+                        android:id="@+id/epf_txt_sal_act"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:hint="0.00"
+                        android:padding="10dp"
+                         />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/cell_shape"
+                    android:weightSum="4">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="10dp"
+                        android:text="DA"
+                        
+                        android:textColor="@android:color/black" />
+
+
+                    <TextView
+                        android:id="@+id/da_txt_salact"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        
+                        android:gravity="end"
+                        android:hint="0.00"
+                        android:padding="10dp"
+                        
+                        android:textColor="@android:color/black" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        
+                        android:gravity="start"
+                        android:padding="10dp"
+                        android:text="ESI"
+                        
+                        android:textColor="@android:color/black" />
+
+                    <TextView
+                        android:id="@+id/esi_txt_sal_act"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        
+                        android:gravity="end"
+                        android:hint="0.00"
+                        android:padding="10dp"
+                         />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/cell_shape"
+                    android:weightSum="4">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        
+                        android:padding="10dp"
+                        android:text="HRA"
+                        android:textColor="@android:color/black" />
+
+
+                    <TextView
+                        android:id="@+id/hra_txt_salact"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        
+                        android:gravity="end"
+                        android:hint="0.00"
+                        android:padding="10dp"
+                        
+                        android:textColor="@android:color/black" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        
+                        android:gravity="start"
+                        android:padding="10dp"
+                        android:text="Fest. Adv"
+                        
+                        android:textColor="@android:color/black" />
+
+                    <TextView
+                        android:id="@+id/festad_txt_sal_act"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        
+                        android:gravity="end"
+                        android:hint="0.00"
+                        android:padding="10dp"
+                         />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/cell_shape"
+                    android:weightSum="4">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        
+                        android:padding="10dp"
+                        android:text="Risk"
+                        
+                        android:textColor="@android:color/black" />
+
+
+                    <TextView
+                        android:id="@+id/risk_txt_salact"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        
+                        android:gravity="end"
+                        android:hint="0.00"
+                        android:padding="10dp"
+                        
+                        android:textColor="@android:color/black" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        
+                        android:gravity="start"
+                        android:padding="10dp"
+                        android:text="SIFL"
+                        
+                        android:textColor="@android:color/black" />
+
+                    <TextView
+                        android:id="@+id/sifl_txt_sal_act"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        
+                        android:gravity="end"
+                        android:hint="0.00"
+                        android:padding="10dp"
+                         />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/cell_shape"
+                    android:weightSum="4">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        
+                        android:padding="10dp"
+                        android:text="Travel Sub."
+                        android:textColor="@android:color/black" />
+
+
+                    <TextView
+                        android:id="@+id/travel_txt_salact"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        
+                        android:gravity="end"
+                        android:hint="0.00"
+                        android:padding="10dp"
+                        
+                        android:textColor="@android:color/black" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        
+                        android:gravity="start"
+                        android:padding="10dp"
+                        android:text="Canteen"
+                        
+                        android:textColor="@android:color/black" />
+
+                    <TextView
+                        android:id="@+id/canteen_txt_sal_act"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        
+                        android:gravity="end"
+                        android:hint="0.00"
+                        android:padding="10dp"
+                         />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/cell_shape"
+                    android:weightSum="4">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        
+                        android:padding="10dp"
+                        android:text="Wash Allo."
+                        android:textColor="@android:color/black" />
+
+
+                    <TextView
+                        android:id="@+id/wash_txt_salact"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        
+                        android:gravity="end"
+                        android:hint="0.00"
+                        android:padding="10dp"
+                        android:textColor="@android:color/black" />
+
+                    <TextView
+                        android:id="@+id/ded1_lab"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        
+                        android:gravity="start"
+                        android:padding="10dp"
+                        android:text="other1"
+                        android:textColor="@android:color/black" />
+
+                    <TextView
+                        android:id="@+id/ded1_txt_sal_act"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        
+                        android:gravity="end"
+                        android:hint="0.00"
+                        android:padding="10dp"
+                         />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/cell_shape"
+                    android:weightSum="4">
+
+                    <TextView
+                        android:id="@+id/earn1_lab"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        
+                        android:padding="10dp"
+                        android:text="other1"
+                        
+                        android:textColor="@android:color/black" />
+
+
+                    <TextView
+                        android:id="@+id/earn1_txt_salact"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        
+                        android:gravity="end"
+                        android:hint="0.00"
+                        android:padding="10dp"
+                        
+                        android:textColor="@android:color/black" />
+
+                    <TextView
+                        android:id="@+id/ded2_lab"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        
+                        android:gravity="start"
+                        android:padding="10dp"
+                        android:text="other2"
+                        
+                        android:textColor="@android:color/black" />
+
+                    <TextView
+                        android:id="@+id/ded2_txt_sal_act"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        
+                        android:gravity="end"
+                        android:hint="0.00"
+                        android:padding="10dp"
+                         />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/cell_shape"
+                    android:weightSum="4">
+
+                    <TextView
+                        android:id="@+id/earn2_lab"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        
+                        android:padding="10dp"
+                        android:text="other2"
+                        
+                        android:textColor="@android:color/black" />
+
+
+                    <TextView
+                        android:id="@+id/earn2_txt_salact"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        
+                        android:gravity="end"
+                        android:hint="0.00"
+                        android:padding="10dp"
+                        
+                        android:textColor="@android:color/black" />
+
+                    <TextView
+                        android:id="@+id/ded3_lab"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        
+                        android:gravity="start"
+                        android:padding="10dp"
+                        android:text="other3"
+                        
+                        android:textColor="@android:color/black" />
+
+                    <TextView
+                        android:id="@+id/ded3_txt_sal_act"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        
+                        android:gravity="end"
+                        android:hint="0.00"
+                        android:padding="10dp"
+                         />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/cell_shape"
+                    android:weightSum="4">
+
+                    <TextView
+                        android:id="@+id/earn3_lab"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        
+                        android:padding="10dp"
+                        android:text="other3"
+                        
+                        android:textColor="@android:color/black" />
+
+
+                    <TextView
+                        android:id="@+id/earn3_txt_salact"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        
+                        android:gravity="end"
+                        android:hint="0.00"
+                        android:padding="10dp"
+                        
+                        android:textColor="@android:color/black" />
+
+                    <TextView
+                        android:id="@+id/ded4_lab"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        
+                        android:gravity="start"
+                        android:padding="10dp"
+                        android:text="other4"
+                        
+                        android:textColor="@android:color/black" />
+
+                    <TextView
+                        android:id="@+id/ded4_txt_sal_act"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        
+                        android:gravity="end"
+                        android:hint="0.00"
+                        android:padding="10dp"
+                         />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:weightSum="4">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="10dp"
+                        android:text="Gross Salary"
+                        android:textColor="@android:color/black" />
+
+
+                    <TextView
+                        android:id="@+id/gross_txt_salact"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:layout_gravity="center"
+                        android:hint="0.00"
+                        android:padding="10dp"
+                        android:textColor="@android:color/black" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="start"
+                        android:padding="10dp"
+                        android:text="Total Deduction"
+                        android:textColor="@android:color/black" />
+
+                    <TextView
+                        android:id="@+id/totalded_txt_sal_act"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:layout_gravity="center"
+                        android:hint="0.00"
+                        android:padding="10dp"
+                         />
+
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:layout_weight="1"
+                        android:padding="10dp"
+                        android:text="Gross Salary"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/black" />
+
+
+                    <TextView
+                        android:id="@+id/grandtotal_txt_salact"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="start"
+                        android:textStyle="bold"
+                        android:hint="0.00"
+                        android:padding="10dp"
+                        
+                        android:textColor="@android:color/black" />
+                </TableRow>
+            </TableLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="100dp" />
+        </LinearLayout>
+    </ScrollView>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

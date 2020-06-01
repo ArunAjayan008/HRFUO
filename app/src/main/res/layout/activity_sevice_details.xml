@@ -50,6 +50,7 @@
                     android:layout_height="wrap_content"
                     android:padding="5dp"
                     android:layout_weight="1"
+                    android:background="@drawable/cell_shape"
                     android:text="@string/doj_sda"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="@android:color/black" />
@@ -62,6 +63,7 @@
                     android:layout_weight="1"
                     android:gravity="end"
                     android:hint="@string/no_data"
+                    android:background="@drawable/cell_shape"
                     android:padding="5dp"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -78,6 +80,7 @@
                     android:padding="5dp"
                     android:layout_weight="1"
                     android:text="@string/desig_on_join_sda"
+                    android:background="@drawable/cell_shape"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="@android:color/black" />
 
@@ -89,6 +92,7 @@
                     android:hint="@string/no_data"
                     android:layout_weight="1"
                     android:padding="5dp"
+                    android:background="@drawable/cell_shape"
                     android:gravity="end"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -104,6 +108,7 @@
                     android:layout_height="wrap_content"
                     android:padding="5dp"
                     android:layout_weight="1"
+                    android:background="@drawable/cell_shape"
                     android:text="@string/current_desig_sda"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="@android:color/black" />
@@ -115,6 +120,7 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/no_data"
                     android:padding="5dp"
+                    android:background="@drawable/cell_shape"
                     android:layout_weight="1"
                     android:gravity="end"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
@@ -132,6 +138,7 @@
                     android:layout_height="wrap_content"
                     android:padding="5dp"
                     android:layout_weight="1"
+                    android:background="@drawable/cell_shape"
                     android:text="@string/dor_sda"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="@android:color/black" />
@@ -144,6 +151,7 @@
                     android:hint="@string/no_data"
                     android:padding="5dp"
                     android:layout_weight="1"
+                    android:background="@drawable/cell_shape"
                     android:gravity="end"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -160,6 +168,7 @@
                     android:padding="5dp"
                     android:layout_weight="1"
                     android:text="@string/date_of_last_promotion_sda"
+                    android:background="@drawable/cell_shape"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="@android:color/black" />
 
@@ -171,6 +180,7 @@
                     android:hint="@string/no_data"
                     android:padding="5dp"
                     android:gravity="end"
+                    android:background="@drawable/cell_shape"
                     android:layout_weight="1"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -187,6 +197,7 @@
                     android:padding="5dp"
                     android:text="@string/date_of_next_promotion_sda"
                     android:layout_weight="1"
+                    android:background="@drawable/cell_shape"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="@android:color/black" />
 
@@ -198,6 +209,7 @@
                     android:hint="@string/no_data"
                     android:padding="5dp"
                     android:gravity="end"
+                    android:background="@drawable/cell_shape"
                     android:layout_weight="1"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 

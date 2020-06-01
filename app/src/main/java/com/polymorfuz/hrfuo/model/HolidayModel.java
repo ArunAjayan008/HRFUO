@@ -12,11 +12,24 @@ public class HolidayModel {
     @Expose
     private String desc;
 
+    public HolidayModel(String date, String desc) {
+        this.date = date;
+        this.desc = desc;
+    }
+
     public String getDate() {
         return date;
     }
 
     public String getDesc() {
         return desc;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 }

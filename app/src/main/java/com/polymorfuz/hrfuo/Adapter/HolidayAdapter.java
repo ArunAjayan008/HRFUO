@@ -34,7 +34,7 @@ public class HolidayAdapter extends RecyclerView.Adapter<HolidayAdapter.Viewhold
     @Override
     public void onBindViewHolder(@NonNull HolidayAdapter.Viewholder holder, int position) {
         HolidayModel holidays=list.get(position);
-        holder.slno.setText(position+1);
+        holder.slno.setText(String.valueOf(position+1));
         holder.date.setText(holidays.getDate());
         holder.desc.setText(holidays.getDesc());
     }
