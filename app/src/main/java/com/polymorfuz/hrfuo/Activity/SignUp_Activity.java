@@ -44,7 +44,7 @@ public class SignUp_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setAppLocale("ml");
         setContentView(R.layout.activity_sign_up);
-        Retrofit retrofitclient = RetrofitClient.getInstance();
+        Retrofit retrofitclient = RetrofitClient.getPostInstance();
         iservice = retrofitclient.create(IMyService.class);
         name = findViewById(R.id.username);
         mobno = findViewById(R.id.mobno);
@@ -59,12 +59,7 @@ public class SignUp_Activity extends AppCompatActivity {
                         password.getText().toString());
             }
         });
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), Login_Activity.class));
-            }
-        });
+        login.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(), Login_Activity.class)));
     }
 
     private void setAppLocale(String localcode) {
@@ -97,5 +92,8 @@ public class SignUp_Activity extends AppCompatActivity {
                         Toast.makeText(SignUp_Activity.this, "" + response, Toast.LENGTH_LONG).show();
                     }
                 }));
+
+        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+        finish();
     }
 }

@@ -43,6 +43,7 @@ public class ProfileViewActivity extends AppCompatActivity {
         addrtxt = findViewById(R.id.addr_pva_txt);
         add = findViewById(R.id.add);
         add.setOnClickListener(v -> {
+            savedata();
 //            ProfileDB db = new ProfileDB("Soman", "15", "Male", "Mtech", "15-02-2017");
 //            viewModel.insert(db);
         });
@@ -92,6 +93,28 @@ public class ProfileViewActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<Profile>> call, Throwable t) {
                 Toast.makeText(ProfileViewActivity.this, "" + t.getMessage().toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void savedata(){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Api.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        Api api = retrofit.create(Api.class);
+
+        Call<List<Profile>> save = api.getprofile();
+        save.enqueue(new Callback<List<Profile>>() {
+            @Override
+            public void onResponse(Call<List<Profile>> call, Response<List<Profile>> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<List<Profile>> call, Throwable t) {
+
             }
         });
     }

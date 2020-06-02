@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -38,19 +37,16 @@ public class Login_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        Retrofit retrofitclient = RetrofitClient.getInstance();
+        Retrofit retrofitclient = RetrofitClient.getPostInstance();
         iservice = retrofitclient.create(IMyService.class);
         mobile = findViewById(R.id.username);
         passwd = findViewById(R.id.password);
         login = findViewById(R.id.btnlogin);
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loginUser(mobile.getText().toString(),
-                        passwd.getText().toString());
-                startActivity(new Intent(getApplicationContext(),MainActivity.class));
-//                finish();
-            }
+        login.setOnClickListener(v -> {
+            loginUser(mobile.getText().toString(),
+                    passwd.getText().toString());
+            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                finish();
         });
     }
 

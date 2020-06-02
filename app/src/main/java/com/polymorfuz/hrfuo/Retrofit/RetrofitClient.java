@@ -5,15 +5,25 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class RetrofitClient {
-    private static Retrofit instance;
+    private static Retrofit postinstance;
+    private static Retrofit getinstance;
 
-    public static Retrofit getInstance(){
-        if(instance==null)
-            instance=new Retrofit.Builder()
-                    .baseUrl("http://192.168.1.6:3000/")
+    public static Retrofit getPostInstance(){
+        if(postinstance==null)
+            postinstance=new Retrofit.Builder()
+                    .baseUrl("http://192.168.0.8:3000/")
                     .addConverterFactory(ScalarsConverterFactory.create())
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .build();
-        return  instance;
+        return  postinstance;
+    }
+    public static Retrofit getInstance(){
+        if(getinstance==null)
+            getinstance=new Retrofit.Builder()
+                    .baseUrl("http://192.168.0.8:3000/")
+                    .addConverterFactory(ScalarsConverterFactory.create())
+                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                    .build();
+        return  getinstance;
     }
 }

@@ -16,9 +16,9 @@ public class EarningModel {
     @Expose
     private String year;
 
-    @SerializedName("basic")
+    @SerializedName("basicval")
     @Expose
-    private String basic;
+    private String basicval;
 
     @SerializedName("da")
     @Expose
@@ -68,8 +68,8 @@ public class EarningModel {
         return year;
     }
 
-    public String getBasic() {
-        return basic;
+    public String getBasicval() {
+        return basicval;
     }
 
     public String getDa() {

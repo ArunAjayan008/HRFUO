@@ -31,8 +31,8 @@ public class SalaryActivity extends AppCompatActivity {
     TextView basic, da, hra, risk, travel, wash, earn_other_1, earn_other_2, earn_other_3, totalearn, pf, esi, f_adv, sifl, canteen, ded_other1, ded_other2, ded_other3, ded_other4, totalded, grandtotal;
     List<EarningModel> earnlist;
     List<Deduct_Model> deductlist;
-    String[] months={"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
-    String[] year={"2020","2021"};
+    String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+    String[] year = {"2020", "2021"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,9 +41,9 @@ public class SalaryActivity extends AppCompatActivity {
         buttonsubmit = findViewById(R.id.buttonsubmit);
         month_spin = findViewById(R.id.spin_mnth);
         year_spin = findViewById(R.id.spin_year);
-        ArrayAdapter<String> monthadapter=new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,months);
+        ArrayAdapter<String> monthadapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, months);
         month_spin.setAdapter(monthadapter);
-        ArrayAdapter<String>year_adapter=new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,year);
+        ArrayAdapter<String> year_adapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, year);
         year_spin.setAdapter(year_adapter);
         da = findViewById(R.id.da_txt_salact);
         basic = findViewById(R.id.basic_txt_salact);
@@ -80,24 +80,11 @@ public class SalaryActivity extends AppCompatActivity {
                 .build();
 
         Api api = retrofit.create(Api.class);
-        Call<List<EarningModel>> call = api.getearning(month,year);
-        Call<List<Deduct_Model>> deductcall = api.getdeduct(month,year);
+        Call<List<EarningModel>> call = api.getearning(month, year);
         call.enqueue(new Callback<List<EarningModel>>() {
             @Override
             public void onResponse(Call<List<EarningModel>> call, Response<List<EarningModel>> response) {
                 earnlist = response.body();
-                deductcall.enqueue(new Callback<List<Deduct_Model>>() {
-                    @Override
-                    public void onResponse(Call<List<Deduct_Model>> call, Response<List<Deduct_Model>> response) {
-                        deductlist = response.body();
-                        setData(earnlist,deductlist);
-                    }
-
-                    @Override
-                    public void onFailure(Call<List<Deduct_Model>> call, Throwable t) {
-
-                    }
-                });
             }
 
             @Override
@@ -105,12 +92,24 @@ public class SalaryActivity extends AppCompatActivity {
 
             }
         });
+        Call<List<Deduct_Model>> deductcall = api.getdeduct(month, year);
+        deductcall.enqueue(new Callback<List<Deduct_Model>>() {
+            @Override
+            public void onResponse(Call<List<Deduct_Model>> call, Response<List<Deduct_Model>> response) {
+                deductlist = response.body();
+                setData(earnlist, deductlist);
+            }
 
+            @Override
+            public void onFailure(Call<List<Deduct_Model>> call, Throwable t) {
+
+            }
+        });
 
     }
 
     private void setData(List<EarningModel> earnlist, List<Deduct_Model> deductlist) {
-        basic.setText(earnlist.get(0).getBasic());
+        basic.setText(earnlist.get(0).getBasicval());
         da.setText(earnlist.get(0).getDa());
         hra.setText(earnlist.get(0).getHra());
         risk.setText(earnlist.get(0).getRisk());
@@ -130,7 +129,9 @@ public class SalaryActivity extends AppCompatActivity {
         ded_other3.setText(deductlist.get(0).getOther3());
         ded_other4.setText(deductlist.get(0).getOther4());
         totalded.setText(deductlist.get(0).getTotal());
-
-        grandtotal.setText(Integer.parseInt(totalearn.toString())-Integer.parseInt(totalded.toString()));
+        int a=Integer.parseInt(totalearn.getText().toString());
+        int b=Integer.parseInt(totalded.getText().toString());
+        String total=String.valueOf(a-b);
+        grandtotal.setText(total);
     }
 }
