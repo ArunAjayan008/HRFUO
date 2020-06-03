@@ -1,7 +1,9 @@
 package com.polymorfuz.hrfuo.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -9,6 +11,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -33,6 +36,7 @@ public class SignUp_Activity extends AppCompatActivity {
     Button signup;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     IMyService iservice;
+    ConstraintLayout mainlayout;
 
     @Override
     protected void onStop() {
@@ -52,9 +56,20 @@ public class SignUp_Activity extends AppCompatActivity {
         password = findViewById(R.id.password);
         login = findViewById(R.id.login);
         signup = findViewById(R.id.btn_sign_up);
-        signup.setOnClickListener(v -> registerUser(name.getText().toString(),
-                mobno.getText().toString(),
-                password.getText().toString()));
+        mainlayout = findViewById(R.id.mainlayout);
+        signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //hide keyboard before going to next activity, otherwise causes error
+
+                InputMethodManager imm=(InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                assert imm != null;
+                imm.hideSoftInputFromWindow(mainlayout.getWindowToken(),0);
+                registerUser(name.getText().toString(),
+                        mobno.getText().toString(),
+                        password.getText().toString(),view);
+            }
+        });
         login.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(), Login_Activity.class)));
     }
 
@@ -66,7 +81,7 @@ public class SignUp_Activity extends AppCompatActivity {
         res.updateConfiguration(conf, dm);
     }
 
-    private void registerUser(String name, String mob, String pwd) {
+    private void registerUser(String name, String mob, String pwd,View view) {
         if (TextUtils.isEmpty(name)) {
             Toast.makeText(this, "Email cannot be empty", Toast.LENGTH_LONG).show();
             return;
@@ -85,18 +100,27 @@ public class SignUp_Activity extends AppCompatActivity {
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String response) throws Exception {
-                        if (response.equals("unregisterd")) {
-                            Snackbar snackbar=Snackbar.make(findViewById(R.id.btn_sign_up),"Please register mobile no.",Snackbar.LENGTH_SHORT);
+                        response=response.substring(1,response.length()-1);
+                        if (response.equals("unregistered")) {
+                            Snackbar snackbar = Snackbar.make(view, "Mobile number not registered", Snackbar.LENGTH_SHORT);
+                            snackbar.setActionTextColor(getResources().getColor(R.color.colorRed));
                             snackbar.show();
-                        }
-                        else {
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                            finish();
+                        } else {
+                            Toast.makeText(SignUp_Activity.this, "Success..!", Toast.LENGTH_LONG).show();
+                            redirect(response);
                         }
                     }
                 }));
+    }
 
-
-
+    private void redirect(String res) {
+        if (res.equals("contract")) {
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        }else if (res.equals("apprentice")){
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        }else if (res.equals("permanent")){
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        }
+        finish();
     }
 }

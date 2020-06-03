@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fbg"
+    android:id="@+id/mainlayout"
     tools:context=".Activity.SignUp_Activity">
 
     <ImageView
@@ -69,7 +70,7 @@
             android:background="@drawable/textbg"
             android:ems="10"
             android:hint="@string/mob_no_logA"
-            android:inputType="textPassword"
+            android:inputType="phone"
             android:padding="12dp"
             android:textColor="@color/colorBrightWhite"
             android:textColorHint="@color/colorDimWhiten"

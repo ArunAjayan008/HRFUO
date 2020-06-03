@@ -11,7 +11,7 @@ public class RetrofitClient {
     public static Retrofit getPostInstance(){
         if(postinstance==null)
             postinstance=new Retrofit.Builder()
-                    .baseUrl("http://192.168.0.8:3000/")
+                    .baseUrl("http://192.168.1.6:3000/")
                     .addConverterFactory(ScalarsConverterFactory.create())
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .build();
@@ -20,7 +20,7 @@ public class RetrofitClient {
     public static Retrofit getInstance(){
         if(getinstance==null)
             getinstance=new Retrofit.Builder()
-                    .baseUrl("http://192.168.0.8:3000/")
+                    .baseUrl("http://192.168.1.6:3000/")
                     .addConverterFactory(ScalarsConverterFactory.create())
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .build();

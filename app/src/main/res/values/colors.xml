@@ -16,4 +16,5 @@
     <color name="colorBrightWhite">#ffffff</color>
     <color name="colorFadeBlue">#1744C4</color>
     <color name="colorTransparent">#D3000000</color>
+    <color name="colorRed">#D3FF0000</color>
 </resources>

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg"
+    android:id="@+id/mainlayout"
     tools:context=".Activity.Login_Activity">
 
     <ImageView
@@ -48,9 +49,8 @@
             android:layout_marginTop="40dp"
             android:layout_marginEnd="24dp"
             android:background="@drawable/textbg"
-            android:ems="10"
             android:hint="@string/mob_no_logA"
-            android:inputType="textPersonName"
+            android:inputType="phone"
             android:padding="12dp"
             android:textColor="@color/colorBrightWhite"
             android:textColorHint="@color/colorDimWhiten"
@@ -68,14 +68,12 @@
             android:layout_marginTop="24dp"
             android:layout_marginEnd="24dp"
             android:background="@drawable/textbg"
-            android:ems="10"
             android:hint="@string/paswd_loga"
             android:inputType="textPassword"
             android:padding="12dp"
             android:textColor="@color/colorBrightWhite"
             android:textColorHint="@color/colorDimWhiten"
             android:textSize="16sp"
-            android:typeface="normal"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/guideline"
@@ -123,7 +121,8 @@
             app:layout_constraintBottom_toBottomOf="@+id/password"
             app:layout_constraintEnd_toEndOf="@+id/password"
             app:layout_constraintTop_toTopOf="@+id/password"
-            app:srcCompat="@drawable/iconhide" />
+            app:srcCompat="@drawable/iconhide"
+            android:focusable="true" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <View
