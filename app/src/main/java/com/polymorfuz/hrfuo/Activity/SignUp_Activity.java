@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.polymorfuz.hrfuo.R;
 import com.polymorfuz.hrfuo.Retrofit.IMyService;
 import com.polymorfuz.hrfuo.Retrofit.RetrofitClient;
@@ -51,14 +52,9 @@ public class SignUp_Activity extends AppCompatActivity {
         password = findViewById(R.id.password);
         login = findViewById(R.id.login);
         signup = findViewById(R.id.btn_sign_up);
-        signup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                registerUser(name.getText().toString(),
-                        mobno.getText().toString(),
-                        password.getText().toString());
-            }
-        });
+        signup.setOnClickListener(v -> registerUser(name.getText().toString(),
+                mobno.getText().toString(),
+                password.getText().toString()));
         login.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(), Login_Activity.class)));
     }
 
@@ -89,11 +85,18 @@ public class SignUp_Activity extends AppCompatActivity {
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String response) throws Exception {
-                        Toast.makeText(SignUp_Activity.this, "" + response, Toast.LENGTH_LONG).show();
+                        if (response.equals("unregisterd")) {
+                            Snackbar snackbar=Snackbar.make(findViewById(R.id.btn_sign_up),"Please register mobile no.",Snackbar.LENGTH_SHORT);
+                            snackbar.show();
+                        }
+                        else {
+                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            finish();
+                        }
                     }
                 }));
 
-        startActivity(new Intent(getApplicationContext(),MainActivity.class));
-        finish();
+
+
     }
 }

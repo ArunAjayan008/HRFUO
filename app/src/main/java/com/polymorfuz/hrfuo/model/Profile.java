@@ -4,6 +4,14 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Profile {
+    @SerializedName("userid")
+    @Expose
+    private String userid;
+
+    @SerializedName("mobno")
+    @Expose
+    private String mobno;
+
     @SerializedName("desig")
     @Expose
     private String desig;
@@ -23,6 +31,14 @@ public class Profile {
     @SerializedName("address")
     @Expose
     private String address;
+
+    public String getUserid() {
+        return userid;
+    }
+
+    public String getMobno() {
+        return mobno;
+    }
 
     public String getDesig() {
         return desig;

@@ -27,7 +27,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ProfileViewActivity extends AppCompatActivity {
-    TextView nametxt, agetxt, gendertxt, qualtxt, dobtxt, addrtxt;
+    TextView nametxt, agetxt, gendertxt, qualtxt, dobtxt, addrtxt,empidtxt,mobnotxt;
     ProfileViewModel viewModel;
     Button add;
 
@@ -36,6 +36,8 @@ public class ProfileViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_view);
         nametxt = findViewById(R.id.profilename_pva_txt);
+        empidtxt = findViewById(R.id.empid_pva_txt);
+        mobnotxt = findViewById(R.id.mobno_pva_txt);
         agetxt = findViewById(R.id.age_pva_txt);
         gendertxt = findViewById(R.id.gender_pva_txt);
         qualtxt = findViewById(R.id.qual_pva_txt);
@@ -43,7 +45,6 @@ public class ProfileViewActivity extends AppCompatActivity {
         addrtxt = findViewById(R.id.addr_pva_txt);
         add = findViewById(R.id.add);
         add.setOnClickListener(v -> {
-            savedata();
 //            ProfileDB db = new ProfileDB("Soman", "15", "Male", "Mtech", "15-02-2017");
 //            viewModel.insert(db);
         });
@@ -83,6 +84,8 @@ public class ProfileViewActivity extends AppCompatActivity {
             public void onResponse(Call<List<Profile>> call, Response<List<Profile>> response) {
                 List<Profile> adslist = response.body();
                 nametxt.setText(adslist.get(0).getDesig());
+                empidtxt.setText(adslist.get(0).getUserid());
+                mobnotxt.setText(adslist.get(0).getMobno());
                 agetxt.setText(adslist.get(0).getAge());
                 dobtxt.setText(adslist.get(0).getDob());
                 gendertxt.setText(adslist.get(0).getGender());
@@ -93,28 +96,6 @@ public class ProfileViewActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<Profile>> call, Throwable t) {
                 Toast.makeText(ProfileViewActivity.this, "" + t.getMessage().toString(), Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    private void savedata(){
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Api.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        Api api = retrofit.create(Api.class);
-
-        Call<List<Profile>> save = api.getprofile();
-        save.enqueue(new Callback<List<Profile>>() {
-            @Override
-            public void onResponse(Call<List<Profile>> call, Response<List<Profile>> response) {
-
-            }
-
-            @Override
-            public void onFailure(Call<List<Profile>> call, Throwable t) {
-
             }
         });
     }
