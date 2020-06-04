@@ -25,6 +25,7 @@ import com.polymorfuz.hrfuo.Retrofit.RetrofitClient;
 import java.util.Locale;
 
 import Utilities.CheckInternet;
+import Utilities.UtilityMethods;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.functions.Consumer;
@@ -38,8 +39,7 @@ public class SignUp_Activity extends AppCompatActivity {
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     IMyService iservice;
     ConstraintLayout mainlayout;
-    CheckInternet check=new CheckInternet();
-
+    UtilityMethods utils=new UtilityMethods();
     @Override
     protected void onStop() {
         compositeDisposable.clear();
@@ -63,17 +63,12 @@ public class SignUp_Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //hide keyboard before going to next activity, otherwise causes error
-                if (check.connectionStatus(getApplicationContext())) {
-                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                    assert imm != null;
-                    imm.hideSoftInputFromWindow(mainlayout.getWindowToken(), 0);
-                    registerUser(name.getText().toString(),
-                            mobno.getText().toString(),
-                            password.getText().toString(), view);
-                }
-                else {
-                    set_snackbar(view,"Please connect to internet");
-                }
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                assert imm != null;
+                imm.hideSoftInputFromWindow(mainlayout.getWindowToken(), 0);
+                registerUser(name.getText().toString(),
+                        mobno.getText().toString(),
+                        password.getText().toString(), view);
             }
         });
         login.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(), Login_Activity.class)));
@@ -100,21 +95,24 @@ public class SignUp_Activity extends AppCompatActivity {
             Toast.makeText(this, "Password cannot be empty", Toast.LENGTH_LONG).show();
             return;
         }
-        compositeDisposable.add(iservice.registerUser(name, mob, pwd)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<String>() {
-                    @Override
-                    public void accept(String response) throws Exception {
-                        response = response.substring(1, response.length() - 1);
-                        if (response.equals("unregistered")) {
-                            set_snackbar(view, "Mobile number not registered");
-                        } else {
-                            Toast.makeText(SignUp_Activity.this, "Success..!", Toast.LENGTH_LONG).show();
-                            redirect(response);
+        if (utils.connectionStatus(getApplicationContext())) {
+            compositeDisposable.add(iservice.registerUser(name, mob, pwd)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Consumer<String>() {
+                        @Override
+                        public void accept(String response) throws Exception {
+                            response = response.substring(1, response.length() - 1);
+                            if (response.equals("unregistered")) {
+                              utils.set_snackbar(view, "Mobile number not registered",getApplicationContext(),"error");
+                            } else {
+                                redirect(response);
+                            }
                         }
-                    }
-                }));
+                    }));
+        } else {
+            utils.set_snackbar(view, "Please connect to the internet",getApplicationContext(),"warning");
+        }
     }
 
     private void redirect(String res) {
@@ -126,11 +124,5 @@ public class SignUp_Activity extends AppCompatActivity {
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
         }
         finish();
-    }
-
-    private void set_snackbar(View view, String msg) {
-        Snackbar snackbar = Snackbar.make(view, msg, Snackbar.LENGTH_SHORT);
-        snackbar.setActionTextColor(getResources().getColor(R.color.colorRed));
-        snackbar.show();
     }
 }

@@ -109,29 +109,31 @@ public class SalaryActivity extends AppCompatActivity {
     }
 
     private void setData(List<EarningModel> earnlist, List<Deduct_Model> deductlist) {
-        basic.setText(earnlist.get(0).getBasicval());
-        da.setText(earnlist.get(0).getDa());
-        hra.setText(earnlist.get(0).getHra());
-        risk.setText(earnlist.get(0).getRisk());
-        travel.setText(earnlist.get(0).getRisk());
-        wash.setText(earnlist.get(0).getWash());
-        earn_other_1.setText(earnlist.get(0).getOther_1());
-        earn_other_2.setText(earnlist.get(0).getOther_2());
-        earn_other_3.setText(earnlist.get(0).getOther_3());
-        totalearn.setText(earnlist.get(0).getTotal());
-        pf.setText(deductlist.get(0).getPf());
-        esi.setText(deductlist.get(0).getEsi());
-        f_adv.setText(deductlist.get(0).getF_adv());
-        sifl.setText(deductlist.get(0).getSifl());
-        canteen.setText(deductlist.get(0).getCanteen());
-        ded_other1.setText(deductlist.get(0).getOther1());
-        ded_other2.setText(deductlist.get(0).getOther2());
-        ded_other3.setText(deductlist.get(0).getOther3());
-        ded_other4.setText(deductlist.get(0).getOther4());
-        totalded.setText(deductlist.get(0).getTotal());
-        int a=Integer.parseInt(totalearn.getText().toString());
-        int b=Integer.parseInt(totalded.getText().toString());
-        String total=String.valueOf(a-b);
-        grandtotal.setText(total);
+        if (earnlist.size() > 0 && deductlist.size() > 0) {
+            basic.setText(earnlist.get(0).getBasicval());
+            da.setText(earnlist.get(0).getDa());
+            hra.setText(earnlist.get(0).getHra());
+            risk.setText(earnlist.get(0).getRisk());
+            travel.setText(earnlist.get(0).getRisk());
+            wash.setText(earnlist.get(0).getWash());
+            earn_other_1.setText(earnlist.get(0).getOther_1());
+            earn_other_2.setText(earnlist.get(0).getOther_2());
+            earn_other_3.setText(earnlist.get(0).getOther_3());
+            totalearn.setText(earnlist.get(0).getTotal());
+            pf.setText(deductlist.get(0).getPf());
+            esi.setText(deductlist.get(0).getEsi());
+            f_adv.setText(deductlist.get(0).getF_adv());
+            sifl.setText(deductlist.get(0).getSifl());
+            canteen.setText(deductlist.get(0).getCanteen());
+            ded_other1.setText(deductlist.get(0).getOther1());
+            ded_other2.setText(deductlist.get(0).getOther2());
+            ded_other3.setText(deductlist.get(0).getOther3());
+            ded_other4.setText(deductlist.get(0).getOther4());
+            totalded.setText(deductlist.get(0).getTotal());
+            int a = Integer.parseInt(totalearn.getText().toString());
+            int b = Integer.parseInt(totalded.getText().toString());
+            String total = String.valueOf(a - b);
+            grandtotal.setText(total);
+        }
     }
 }

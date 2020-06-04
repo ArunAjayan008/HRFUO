@@ -6,16 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".Activity.ServiceDetailsActivity">
 
-    <include layout="@layout/appbar"/>
+    <include layout="@layout/appbar" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:textSize="20sp"
-        android:textColor="@color/colorBlack"
         android:text="@string/service_details_sda"
+        android:textColor="@color/colorBlack"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/toolbar"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
@@ -42,18 +42,17 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:weightSum="2"
-                android:paddingBottom="10dp">
+                android:weightSum="2">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:padding="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/cell_shape"
+                    android:padding="10dp"
                     android:text="@string/doj_sda"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="@android:color/black" />
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp" />
 
 
                 <TextView
@@ -61,157 +60,152 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:background="@drawable/cell_shape"
                     android:gravity="end"
                     android:hint="@string/no_data"
-                    android:background="@drawable/cell_shape"
-                    android:padding="5dp"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    android:padding="10dp"
+                    android:textSize="16sp" />
 
             </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingBottom="10dp">
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:padding="5dp"
                     android:layout_weight="1"
-                    android:text="@string/desig_on_join_sda"
                     android:background="@drawable/cell_shape"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="@android:color/black" />
+                    android:padding="10dp"
+                    android:text="@string/desig_on_join_sda"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp" />
 
 
                 <TextView
                     android:id="@+id/desig_on_join_sda_txt"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:hint="@string/no_data"
                     android:layout_weight="1"
-                    android:padding="5dp"
                     android:background="@drawable/cell_shape"
                     android:gravity="end"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    android:hint="@string/no_data"
+                    android:padding="10dp"
+                    android:textSize="16sp" />
 
             </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingBottom="10dp">
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:padding="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/cell_shape"
+                    android:padding="10dp"
                     android:text="@string/current_desig_sda"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="@android:color/black" />
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp" />
 
 
                 <TextView
                     android:id="@+id/curnt_desig_sda_txt"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:hint="@string/no_data"
-                    android:padding="5dp"
-                    android:background="@drawable/cell_shape"
                     android:layout_weight="1"
+                    android:background="@drawable/cell_shape"
                     android:gravity="end"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    android:hint="@string/no_data"
+                    android:padding="10dp"
+                    android:textSize="16sp" />
 
             </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:weightSum="2"
-                android:paddingBottom="10dp">
+                android:weightSum="2">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:padding="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/cell_shape"
+                    android:padding="10dp"
                     android:text="@string/dor_sda"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="@android:color/black" />
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp" />
 
 
                 <TextView
                     android:id="@+id/dor_sda_txt"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:hint="@string/no_data"
-                    android:padding="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/cell_shape"
                     android:gravity="end"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    android:hint="@string/no_data"
+                    android:padding="10dp"
+                    android:textSize="16sp" />
 
             </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingBottom="10dp">
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:padding="5dp"
                     android:layout_weight="1"
-                    android:text="@string/date_of_last_promotion_sda"
                     android:background="@drawable/cell_shape"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="@android:color/black" />
+                    android:padding="10dp"
+                    android:text="@string/date_of_last_promotion_sda"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp" />
 
 
                 <TextView
                     android:id="@+id/dolast_promo_sda_txt"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:hint="@string/no_data"
-                    android:padding="5dp"
-                    android:gravity="end"
-                    android:background="@drawable/cell_shape"
                     android:layout_weight="1"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    android:background="@drawable/cell_shape"
+                    android:gravity="end"
+                    android:hint="@string/no_data"
+                    android:padding="10dp"
+                    android:textSize="16sp" />
 
             </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingBottom="10dp">
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:padding="5dp"
-                    android:text="@string/date_of_next_promotion_sda"
                     android:layout_weight="1"
                     android:background="@drawable/cell_shape"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="@android:color/black" />
+                    android:padding="10dp"
+                    android:text="@string/date_of_next_promotion_sda"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp" />
 
 
                 <TextView
                     android:id="@+id/date_next_promo_sda_txt"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:hint="@string/no_data"
-                    android:padding="5dp"
-                    android:gravity="end"
-                    android:background="@drawable/cell_shape"
                     android:layout_weight="1"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    android:background="@drawable/cell_shape"
+                    android:gravity="end"
+                    android:hint="@string/no_data"
+                    android:padding="10dp"
+                    android:textSize="16sp" />
 
             </TableRow>
         </TableLayout>

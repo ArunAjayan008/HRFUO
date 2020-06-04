@@ -17,6 +17,8 @@
             android:layout_weight="0.5"
             android:gravity="center"
             android:text="1"
+            android:padding="10dp"
+            android:background="@drawable/cell_shape"
             android:textColor="@color/colorBlack"
             android:textSize="18sp" />
 
@@ -26,7 +28,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
+            android:background="@drawable/cell_shape"
             android:hint="0"
+            android:padding="10dp"
             android:textColor="@color/colorBlack"
             android:textSize="18sp" />
 
@@ -36,7 +40,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1.5"
             android:gravity="start"
+            android:padding="10dp"
             android:hint="0"
+            android:background="@drawable/cell_shape"
             android:textColor="@color/colorBlack"
             android:textSize="18sp" />
     </LinearLayout>

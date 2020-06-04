@@ -1,4 +1,4 @@
-package com.polymorfuz.hrfuo;
+package Utilities;
 
 import android.content.Context;
 import android.content.SharedPreferences;

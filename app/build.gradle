@@ -54,9 +54,13 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.archLifecycleVersion"
     annotationProcessor "androidx.lifecycle:lifecycle-compiler:$rootProject.archLifecycleVersion"
 
+    //Analytics
+    implementation "com.flurry.android:analytics:12.3.0@aar"
+
 // UI
     implementation "com.google.android.material:material:$rootProject.materialVersion"
 
 // Testing
     androidTestImplementation "androidx.arch.core:core-testing:$rootProject.coreTestingVersion"
+
 }

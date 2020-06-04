@@ -19,6 +19,8 @@ import com.polymorfuz.hrfuo.R;
 import com.polymorfuz.hrfuo.Retrofit.IMyService;
 import com.polymorfuz.hrfuo.Retrofit.RetrofitClient;
 
+import Utilities.CheckInternet;
+import Utilities.UtilityMethods;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.functions.Consumer;
@@ -31,6 +33,7 @@ public class Login_Activity extends AppCompatActivity {
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     IMyService iservice;
     ConstraintLayout mainlayout;
+    UtilityMethods utils = new UtilityMethods();
 
     @Override
     protected void onStop() {
@@ -53,14 +56,16 @@ public class Login_Activity extends AppCompatActivity {
             public void onClick(View v) {
                 //hide keyboard before going to next activity, otherwise causes error
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                assert imm != null;
                 imm.hideSoftInputFromWindow(mainlayout.getWindowToken(), 0);
-                loginUser(mobile.getText().toString(),
-                        passwd.getText().toString(),v);
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+//                loginUser(mobile.getText().toString(),
+//                        passwd.getText().toString(), v);
             }
         });
     }
 
-    private void loginUser(String mobno, String password,View view) {
+    private void loginUser(String mobno, String password, View view) {
         if (TextUtils.isEmpty(mobno)) {
             Toast.makeText(this, "Email cannot be empty", Toast.LENGTH_LONG).show();
             return;
@@ -69,23 +74,24 @@ public class Login_Activity extends AppCompatActivity {
             Toast.makeText(this, "Password cannot be empty", Toast.LENGTH_LONG).show();
             return;
         }
-        compositeDisposable.add(iservice.loginUser(mobno, password)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<String>() {
-                    @Override
-                    public void accept(String response) throws Exception {
-                        response = response.substring(1, response.length() - 1);
-                    if (!(response.equals("contract")||response.equals("apprentice")||response.equals("permanent"))) {
-                            Snackbar snackbar = Snackbar.make(view, response, Snackbar.LENGTH_SHORT);
-                            snackbar.setActionTextColor(getResources().getColor(R.color.colorRed));
-                            snackbar.show();
-                        } else {
-//                        Toast.makeText(Login_Activity.this, "" + response, Toast.LENGTH_LONG).show();
-                            redirect(response);
+        if (utils.connectionStatus(getApplicationContext())) {
+            compositeDisposable.add(iservice.loginUser(mobno, password)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Consumer<String>() {
+                        @Override
+                        public void accept(String response) throws Exception {
+                            response = response.substring(1, response.length() - 1);
+                            if (!(response.equals("contract") || response.equals("apprentice") || response.equals("permanent"))) {
+                               utils.set_snackbar(view, response,getApplicationContext(),"error");
+                            } else {
+                                redirect(response);
+                            }
                         }
-                    }
-                }));
+                    }));
+        } else {
+           utils.set_snackbar(view, "Please connect to the internet",getApplicationContext(),"warning");
+        }
     }
 
     private void redirect(String res) {
