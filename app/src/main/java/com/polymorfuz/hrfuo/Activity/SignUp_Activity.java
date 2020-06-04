@@ -24,6 +24,7 @@ import com.polymorfuz.hrfuo.Retrofit.RetrofitClient;
 
 import java.util.Locale;
 
+import Utilities.CheckInternet;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.functions.Consumer;
@@ -37,6 +38,7 @@ public class SignUp_Activity extends AppCompatActivity {
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     IMyService iservice;
     ConstraintLayout mainlayout;
+    CheckInternet check=new CheckInternet();
 
     @Override
     protected void onStop() {
@@ -61,13 +63,17 @@ public class SignUp_Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //hide keyboard before going to next activity, otherwise causes error
-
-                InputMethodManager imm=(InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-                assert imm != null;
-                imm.hideSoftInputFromWindow(mainlayout.getWindowToken(),0);
-                registerUser(name.getText().toString(),
-                        mobno.getText().toString(),
-                        password.getText().toString(),view);
+                if (check.connectionStatus(getApplicationContext())) {
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    assert imm != null;
+                    imm.hideSoftInputFromWindow(mainlayout.getWindowToken(), 0);
+                    registerUser(name.getText().toString(),
+                            mobno.getText().toString(),
+                            password.getText().toString(), view);
+                }
+                else {
+                    set_snackbar(view,"Please connect to internet");
+                }
             }
         });
         login.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(), Login_Activity.class)));
@@ -81,7 +87,7 @@ public class SignUp_Activity extends AppCompatActivity {
         res.updateConfiguration(conf, dm);
     }
 
-    private void registerUser(String name, String mob, String pwd,View view) {
+    private void registerUser(String name, String mob, String pwd, View view) {
         if (TextUtils.isEmpty(name)) {
             Toast.makeText(this, "Email cannot be empty", Toast.LENGTH_LONG).show();
             return;
@@ -100,11 +106,9 @@ public class SignUp_Activity extends AppCompatActivity {
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String response) throws Exception {
-                        response=response.substring(1,response.length()-1);
+                        response = response.substring(1, response.length() - 1);
                         if (response.equals("unregistered")) {
-                            Snackbar snackbar = Snackbar.make(view, "Mobile number not registered", Snackbar.LENGTH_SHORT);
-                            snackbar.setActionTextColor(getResources().getColor(R.color.colorRed));
-                            snackbar.show();
+                            set_snackbar(view, "Mobile number not registered");
                         } else {
                             Toast.makeText(SignUp_Activity.this, "Success..!", Toast.LENGTH_LONG).show();
                             redirect(response);
@@ -116,11 +120,17 @@ public class SignUp_Activity extends AppCompatActivity {
     private void redirect(String res) {
         if (res.equals("contract")) {
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
-        }else if (res.equals("apprentice")){
+        } else if (res.equals("apprentice")) {
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
-        }else if (res.equals("permanent")){
+        } else if (res.equals("permanent")) {
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
         }
         finish();
+    }
+
+    private void set_snackbar(View view, String msg) {
+        Snackbar snackbar = Snackbar.make(view, msg, Snackbar.LENGTH_SHORT);
+        snackbar.setActionTextColor(getResources().getColor(R.color.colorRed));
+        snackbar.show();
     }
 }
