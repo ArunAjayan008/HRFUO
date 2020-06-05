@@ -4,52 +4,52 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Notifications {
-    @SerializedName("Title")
+    @SerializedName("title")
     @Expose
-    private String Title;
-    @SerializedName("Desc")
+    private String title;
+    @SerializedName("desc")
     @Expose
-    private String Desc;
-    @SerializedName("Date_time")
+    private String desc;
+    @SerializedName("date_time")
     @Expose
-    private String Date_time;
+    private String date_time;
     @SerializedName("userid")
     @Expose
     private String userid;
-    @SerializedName("Target_date")
+    @SerializedName("target_date")
     @Expose
-    private String Target_date;
+    private String target_date;
 
     public Notifications(String title, String desc, String date_time, String userid, String target_date) {
-        Title = title;
-        Desc = desc;
-        Date_time = date_time;
+        this.title = title;
+        this.desc = desc;
+        this.date_time = date_time;
         this.userid = userid;
-        Target_date = target_date;
+        this.target_date = target_date;
     }
 
     public String getTitle() {
-        return Title;
+        return title;
     }
 
     public void setTitle(String title) {
-        Title = title;
+        this.title = title;
     }
 
     public String getDesc() {
-        return Desc;
+        return desc;
     }
 
     public void setDesc(String desc) {
-        Desc = desc;
+        this.desc = desc;
     }
 
     public String getDate_time() {
-        return Date_time;
+        return date_time;
     }
 
     public void setDate_time(String date_time) {
-        Date_time = date_time;
+        this.date_time = date_time;
     }
 
     public String getUserid() {
@@ -61,10 +61,10 @@ public class Notifications {
     }
 
     public String getTarget_date() {
-        return Target_date;
+        return target_date;
     }
 
     public void setTarget_date(String target_date) {
-        Target_date = target_date;
+        this.target_date = target_date;
     }
 }

@@ -24,6 +24,7 @@ import Utilities.UtilityMethods;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.functions.Consumer;
+import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 
@@ -74,13 +75,14 @@ public class Login_Activity extends AppCompatActivity {
             Toast.makeText(this, "Password cannot be empty", Toast.LENGTH_LONG).show();
             return;
         }
+
         if (utils.connectionStatus(getApplicationContext())) {
             compositeDisposable.add(iservice.loginUser(mobno, password)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new Consumer<String>() {
+                    .subscribeWith(new DisposableObserver<String>() {
                         @Override
-                        public void accept(String response) throws Exception {
+                        public void onNext(String response) {
                             response = response.substring(1, response.length() - 1);
                             if (!(response.equals("contract") || response.equals("apprentice") || response.equals("permanent"))) {
                                utils.set_snackbar(view, response,getApplicationContext(),"error");
@@ -88,10 +90,39 @@ public class Login_Activity extends AppCompatActivity {
                                 redirect(response);
                             }
                         }
+
+                        @Override
+                        public void onError(Throwable e) {
+                            utils.set_snackbar(view, "Server connection failed",getApplicationContext(),"error");
+                        }
+
+                        @Override
+                        public void onComplete() {
+
+                        }
                     }));
         } else {
-           utils.set_snackbar(view, "Please connect to the internet",getApplicationContext(),"warning");
+            utils.set_snackbar(view, "Please connect to the internet", getApplicationContext(), "warning");
         }
+
+//        if (utils.connectionStatus(getApplicationContext())) {
+//            compositeDisposable.add(iservice.loginUser(mobno, password)
+//                    .subscribeOn(Schedulers.io())
+//                    .observeOn(AndroidSchedulers.mainThread())
+//                    .subscribe(new Consumer<String>() {
+//                        @Override
+//                        public void accept(String response) throws Exception {
+//                            response = response.substring(1, response.length() - 1);
+//                            if (!(response.equals("contract") || response.equals("apprentice") || response.equals("permanent"))) {
+//                               utils.set_snackbar(view, response,getApplicationContext(),"error");
+//                            } else {
+//                                redirect(response);
+//                            }
+//                        }
+//                    }));
+//        } else {
+//           utils.set_snackbar(view, "Please connect to the internet",getApplicationContext(),"warning");
+//        }
     }
 
     private void redirect(String res) {

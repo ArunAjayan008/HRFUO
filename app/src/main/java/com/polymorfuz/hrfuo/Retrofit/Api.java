@@ -16,8 +16,8 @@ import retrofit2.http.Query;
 
 public interface Api {
 
-    String BASE_URL = "http://192.168.1.6:3000";
-//    String BASE_URL = "http://192.168.0.8:3000";
+//    String BASE_URL = "http://192.168.1.6:3000";
+    String BASE_URL = "http://192.168.0.12:3000";
 
     @GET("/getprofile?id=44")
     Call<List<Profile>> getprofile();

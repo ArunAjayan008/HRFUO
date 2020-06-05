@@ -28,7 +28,9 @@ import Utilities.CheckInternet;
 import Utilities.UtilityMethods;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
+import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 
@@ -39,7 +41,8 @@ public class SignUp_Activity extends AppCompatActivity {
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     IMyService iservice;
     ConstraintLayout mainlayout;
-    UtilityMethods utils=new UtilityMethods();
+    UtilityMethods utils = new UtilityMethods();
+
     @Override
     protected void onStop() {
         compositeDisposable.clear();
@@ -99,18 +102,30 @@ public class SignUp_Activity extends AppCompatActivity {
             compositeDisposable.add(iservice.registerUser(name, mob, pwd)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new Consumer<String>() {
+                    .subscribeWith(new DisposableObserver<String>() {
+
                         @Override
-                        public void accept(String response) throws Exception {
+                        public void onNext(String response) {
                             response = response.substring(1, response.length() - 1);
                             if (response.equals("unregistered")) {
-                              utils.set_snackbar(view, "Mobile number not registered",getApplicationContext(),"error");
+                                utils.set_snackbar(view, "Mobile number not registered", getApplicationContext(), "error");
                             } else {
                                 redirect(response);
                             }
                         }
+
+                        @Override
+                        public void onError(Throwable e) {
+                            utils.set_snackbar(view, "Server connection failed",getApplicationContext(),"error");
+                        }
+
+                        @Override
+                        public void onComplete() {
+
+                        }
                     }));
-        } else {
+
+        }else {
             utils.set_snackbar(view, "Please connect to the internet",getApplicationContext(),"warning");
         }
     }
@@ -125,4 +140,5 @@ public class SignUp_Activity extends AppCompatActivity {
         }
         finish();
     }
+
 }
