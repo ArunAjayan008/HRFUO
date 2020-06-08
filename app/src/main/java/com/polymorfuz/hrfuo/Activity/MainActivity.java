@@ -61,7 +61,7 @@ View logid;
         other_card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),OthersActivity.class));
+                startActivity(new Intent(getApplicationContext(),PFActivity.class));
 
             }
         });
