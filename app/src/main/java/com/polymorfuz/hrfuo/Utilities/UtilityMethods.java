@@ -1,10 +1,9 @@
-package Utilities;
+package com.polymorfuz.hrfuo.Utilities;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.view.View;
-import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
 

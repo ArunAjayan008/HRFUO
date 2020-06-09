@@ -11,19 +11,15 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.polymorfuz.hrfuo.R;
 import com.polymorfuz.hrfuo.Retrofit.IMyService;
 import com.polymorfuz.hrfuo.Retrofit.RetrofitClient;
 
-import Utilities.CheckInternet;
-import Utilities.UtilityMethods;
+import com.polymorfuz.hrfuo.Utilities.UtilityMethods;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.functions.Consumer;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;

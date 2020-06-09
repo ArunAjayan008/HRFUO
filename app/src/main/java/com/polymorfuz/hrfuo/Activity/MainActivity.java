@@ -54,7 +54,7 @@ View logid;
         notify_card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),NotificationListActivity.class));
+                startActivity(new Intent(getApplicationContext(),NextActivity.class));
 
             }
         });

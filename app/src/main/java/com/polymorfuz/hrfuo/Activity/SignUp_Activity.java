@@ -1,15 +1,18 @@
 package com.polymorfuz.hrfuo.Activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -17,19 +20,21 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.google.android.material.snackbar.Snackbar;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 import com.polymorfuz.hrfuo.R;
 import com.polymorfuz.hrfuo.Retrofit.IMyService;
 import com.polymorfuz.hrfuo.Retrofit.RetrofitClient;
 
 import java.util.Locale;
+import java.util.Objects;
 
-import Utilities.CheckInternet;
-import Utilities.UtilityMethods;
+import com.polymorfuz.hrfuo.Utilities.Config;
+import com.polymorfuz.hrfuo.Utilities.UtilityMethods;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
@@ -75,6 +80,7 @@ public class SignUp_Activity extends AppCompatActivity {
             }
         });
         login.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(), Login_Activity.class)));
+        gettoken();
     }
 
     private void setAppLocale(String localcode) {
@@ -141,4 +147,33 @@ public class SignUp_Activity extends AppCompatActivity {
         finish();
     }
 
+
+    private void gettoken(){
+        FirebaseInstanceId.getInstance().getInstanceId()
+                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                        if (!task.isSuccessful()) {
+                            Log.d("getInstanceId failed", task.getException().toString());
+                            return;
+                        }
+
+                        // Get new Instance ID token
+                        String token = Objects.requireNonNull(task.getResult()).getToken();
+                        storeRegIdInPref(token);
+                        // Log and toast
+//                        String msg = getString(R.string.msg_token_fmt, token);
+                        Log.d("tokennnnnnnnnnn",token);
+                        Toast.makeText(SignUp_Activity.this, token, Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+    }
+
+    private void storeRegIdInPref(String token) {
+        SharedPreferences pref = getApplicationContext().getSharedPreferences(Config.SHARED_PREF, 0);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putString("regId", token);
+        editor.commit();
+    }
 }

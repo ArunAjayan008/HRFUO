@@ -14,7 +14,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.PFActivity"></activity>
+        <activity android:name=".Activity.NextActivity"></activity>
+
+        <service
+            android:name=".Services.MyFirebaseInstanceIDService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <activity android:name=".Activity.PFActivity" />
         <activity android:name=".Activity.LeaveActivity" />
         <activity android:name=".Activity.Test" />
         <activity android:name=".Activity.Start_Language_Activity" />
