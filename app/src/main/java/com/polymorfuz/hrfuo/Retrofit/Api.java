@@ -16,11 +16,12 @@ import retrofit2.http.Query;
 
 public interface Api {
 
-//    String BASE_URL = "http://192.168.1.6:3000";
+    //    String BASE_URL = "http://192.168.1.6:3000";
     String BASE_URL = "http://192.168.0.12:3000";
 
-    @GET("/getprofile?id=44")
-    Call<List<Profile>> getprofile();
+    @GET("/getprofile")
+    Call<List<Profile>> getprofile(
+            @Query("id") String id);
 
     @GET("/getservice?id=44")
     Call<List<ServiceModel>> getservice();
@@ -36,14 +37,14 @@ public interface Api {
 
     @GET("/getearning?id=44")
     Call<List<EarningModel>> getearning(
-            @Query("mn")String mn,
-            @Query("yr")String yr
+            @Query("mn") String mn,
+            @Query("yr") String yr
     );
 
     @GET("/getdeduct?id=44")
     Call<List<Deduct_Model>> getdeduct(
-            @Query("mn")String mn,
-            @Query("yr")String yr
+            @Query("mn") String mn,
+            @Query("yr") String yr
     );
 
 }
