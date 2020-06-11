@@ -25,14 +25,15 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class NotificationListActivity extends AppCompatActivity {
     NotificationAdapter adapter;
     RecyclerView notifycycler;
-    List<Notifications>notify;
-String id;
+    List<Notifications> notify;
+    String id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        id=new SharedPrefManager(getApplicationContext()).readString("mobno",null );
+        id = new SharedPrefManager(getApplicationContext()).readString("id", null);
         setContentView(R.layout.activity_notification_list);
-        notifycycler=findViewById(R.id.notify_recycler);
+        notifycycler = findViewById(R.id.notify_recycler);
         LinearLayoutManager layoutManager = new LinearLayoutManager(NotificationListActivity.this);
         layoutManager.setStackFromEnd(true);
         layoutManager.setReverseLayout(true);
@@ -41,18 +42,18 @@ String id;
     }
 
     private void fetchdata() {
-        Retrofit retrofit=new Retrofit.Builder()
+        Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Api.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        Api api=retrofit.create(Api.class);
+        Api api = retrofit.create(Api.class);
 
-        Call<List<Notifications>>call=api.getnotify(id);
+        Call<List<Notifications>> call = api.getnotify(id);
         call.enqueue(new Callback<List<Notifications>>() {
             @Override
             public void onResponse(Call<List<Notifications>> call, Response<List<Notifications>> response) {
-                notify=response.body();
-                adapter=new NotificationAdapter(getApplicationContext(),notify);
+                notify = response.body();
+                adapter = new NotificationAdapter(getApplicationContext(), notify);
                 notifycycler.setAdapter(adapter);
             }
 

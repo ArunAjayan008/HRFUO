@@ -37,7 +37,7 @@ public class PFActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_p_f);
         view = getWindow().getDecorView().getRootView();
-        id = new SharedPrefManager(getApplicationContext()).readString("mobno", null);
+        id = new SharedPrefManager(getApplicationContext()).readString("id", null);
         webView = findViewById(R.id.webview);
         webView.getSettings().setJavaScriptEnabled(true);
         if (utils.isconnected(getApplicationContext())) {

@@ -4,7 +4,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Profile {
-    @SerializedName("mobno")
+    @SerializedName("userid")
     @Expose
     private String userid;
 

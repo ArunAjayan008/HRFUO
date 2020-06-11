@@ -35,7 +35,7 @@ public class ProfileViewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_view);
-        id=new SharedPrefManager(getApplicationContext()).readString("mobno",null );
+        id=new SharedPrefManager(getApplicationContext()).readString("id",null );
         view=getWindow().getDecorView().getRootView();
         nametxt = findViewById(R.id.profilename_pva_txt);
         empidtxt = findViewById(R.id.empid_pva_txt);

@@ -62,15 +62,15 @@ public class NextActivity extends AppCompatActivity {
     // Fetches reg id from shared preferences
     // and displays on the screen
     private void displayFirebaseRegId() {
-        SharedPreferences pref = getApplicationContext().getSharedPreferences(Config.SHARED_PREF, 0);
-        String regId = pref.getString("regId", null);
-
-        Log.e(TAG, "Firebase reg id: " + regId);
-
-        if (!TextUtils.isEmpty(regId))
-            txtRegId.setText("Firebase Reg Id: " + regId);
-        else
-            txtRegId.setText("Firebase Reg Id is not received yet!");
+//        SharedPreferences pref = getApplicationContext().getSharedPreferences(Config.SHARED_PREF, 0);
+//        String regId = pref.getString("regId", null);
+//
+//        Log.e(TAG, "Firebase reg id: " + regId);
+//
+//        if (!TextUtils.isEmpty(regId))
+//            txtRegId.setText("Firebase Reg Id: " + regId);
+//        else
+//            txtRegId.setText("Firebase Reg Id is not received yet!");
     }
 
     @Override

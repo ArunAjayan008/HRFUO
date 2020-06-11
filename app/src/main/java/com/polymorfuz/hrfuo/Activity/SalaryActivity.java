@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,11 +36,15 @@ public class SalaryActivity extends AppCompatActivity {
     String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
     String[] year = {"2020", "2021"};
     String id;
+    TableLayout tableLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_salary);
-        id=new SharedPrefManager(getApplicationContext()).readString("mobno",null);
+        id = new SharedPrefManager(getApplicationContext()).readString("id", null);
+        tableLayout=findViewById(R.id.tableLayout);
+        tableLayout.setVisibility(View.GONE);
         buttonsubmit = findViewById(R.id.buttonsubmit);
         month_spin = findViewById(R.id.spin_mnth);
         year_spin = findViewById(R.id.spin_year);
@@ -82,7 +87,7 @@ public class SalaryActivity extends AppCompatActivity {
                 .build();
 
         Api api = retrofit.create(Api.class);
-        Call<List<EarningModel>> call = api.getearning(month, year,id);
+        Call<List<EarningModel>> call = api.getearning(id,month, year);
         call.enqueue(new Callback<List<EarningModel>>() {
             @Override
             public void onResponse(Call<List<EarningModel>> call, Response<List<EarningModel>> response) {
@@ -94,7 +99,7 @@ public class SalaryActivity extends AppCompatActivity {
 
             }
         });
-        Call<List<Deduct_Model>> deductcall = api.getdeduct(month, year,id);
+        Call<List<Deduct_Model>> deductcall = api.getdeduct(id,month, year);
         deductcall.enqueue(new Callback<List<Deduct_Model>>() {
             @Override
             public void onResponse(Call<List<Deduct_Model>> call, Response<List<Deduct_Model>> response) {
@@ -112,6 +117,7 @@ public class SalaryActivity extends AppCompatActivity {
 
     private void setData(List<EarningModel> earnlist, List<Deduct_Model> deductlist) {
         if (earnlist.size() > 0 && deductlist.size() > 0) {
+            tableLayout.setVisibility(View.VISIBLE);
             basic.setText(earnlist.get(0).getBasicval());
             da.setText(earnlist.get(0).getDa());
             hra.setText(earnlist.get(0).getHra());
@@ -136,6 +142,8 @@ public class SalaryActivity extends AppCompatActivity {
             int b = Integer.parseInt(totalded.getText().toString());
             String total = String.valueOf(a - b);
             grandtotal.setText(total);
+        }else{
+            tableLayout.setVisibility(View.GONE);
         }
     }
 }

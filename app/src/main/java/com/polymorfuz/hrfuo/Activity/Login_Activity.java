@@ -60,6 +60,7 @@ public class Login_Activity extends AppCompatActivity {
         passwd = findViewById(R.id.password);
         login = findViewById(R.id.btnlogin);
         mainlayout = findViewById(R.id.mainlayout);
+        bar = findViewById(R.id.progressBar);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

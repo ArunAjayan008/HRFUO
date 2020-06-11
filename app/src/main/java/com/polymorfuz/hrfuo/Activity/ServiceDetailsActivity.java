@@ -22,12 +22,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ServiceDetailsActivity extends AppCompatActivity {
     TextView doj_txt, desig_txt, curnt_desig_txt, dor_txt, last_promotxt, next_promotxt;
-String id;
+    String id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sevice_details);
-        id=new SharedPrefManager(getApplicationContext()).readString("mobno",null );
+        id = new SharedPrefManager(getApplicationContext()).readString("id", null);
         desig_txt = findViewById(R.id.desig_on_join_sda_txt);
         doj_txt = findViewById(R.id.doj_sda_txt);
         curnt_desig_txt = findViewById(R.id.curnt_desig_sda_txt);

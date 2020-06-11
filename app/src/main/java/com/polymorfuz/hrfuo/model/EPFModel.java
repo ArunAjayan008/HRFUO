@@ -4,9 +4,9 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class EPFModel {
-    @SerializedName("mobno")
+    @SerializedName("userid")
     @Expose
-    private String mobno;
+    private String userid;
 
     @SerializedName("uan")
     @Expose
@@ -17,8 +17,8 @@ public class EPFModel {
     private String password;
 
 
-    public String getMobno() {
-        return mobno;
+    public String getUserid() {
+        return userid;
     }
 
     public String getUan() {
