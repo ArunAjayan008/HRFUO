@@ -1,6 +1,7 @@
 package com.polymorfuz.hrfuo.Retrofit;
 
 import com.polymorfuz.hrfuo.model.Deduct_Model;
+import com.polymorfuz.hrfuo.model.EPFModel;
 import com.polymorfuz.hrfuo.model.EarningModel;
 import com.polymorfuz.hrfuo.model.HolidayModel;
 import com.polymorfuz.hrfuo.model.Leave;
@@ -17,7 +18,7 @@ import retrofit2.http.Query;
 public interface Api {
 
     //    String BASE_URL = "http://192.168.1.6:3000";
-    String BASE_URL = "http://192.168.0.12:3000";
+    String BASE_URL = "http://192.168.0.5:3000";
 
     @GET("/getprofile")
     Call<List<Profile>> getprofile(
@@ -49,5 +50,7 @@ public interface Api {
             @Query("yr") String yr
     );
 
+    @GET("/getpf")
+    Call<List<EPFModel>> getPF(@Query("id") String id);
 }
 

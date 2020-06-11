@@ -4,9 +4,9 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class EarningModel {
-    @SerializedName("userid")
+    @SerializedName("mobno")
     @Expose
-    private String userid;
+    private String mobno;
 
     @SerializedName("month")
     @Expose
@@ -56,8 +56,9 @@ public class EarningModel {
     @Expose
     private String total;
 
-    public String getUserid() {
-        return userid;
+
+    public String getMobno() {
+        return mobno;
     }
 
     public String getMonth() {

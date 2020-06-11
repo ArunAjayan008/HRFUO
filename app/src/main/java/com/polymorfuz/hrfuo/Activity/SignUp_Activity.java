@@ -19,6 +19,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -50,9 +51,9 @@ public class SignUp_Activity extends AppCompatActivity {
     IMyService iservice;
     ConstraintLayout mainlayout;
     UtilityMethods utils = new UtilityMethods();
-    ProgressDialog pdialog;
     View view;
     String token;
+    ProgressBar bar;
 
     @Override
     protected void onStop() {
@@ -75,6 +76,7 @@ public class SignUp_Activity extends AppCompatActivity {
         login = findViewById(R.id.login);
         signup = findViewById(R.id.btn_sign_up);
         mainlayout = findViewById(R.id.mainlayout);
+        bar = findViewById(R.id.progressBar);
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,9 +84,9 @@ public class SignUp_Activity extends AppCompatActivity {
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 assert imm != null;
                 imm.hideSoftInputFromWindow(mainlayout.getWindowToken(), 0);
-                AsyncTaskConnect connect = new AsyncTaskConnect();
-                connect.execute();
-//                gettoken();
+                registerUser(name.getText().toString(),
+                        mobno.getText().toString(),
+                        password.getText().toString(), token);
             }
         });
         login.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(), Login_Activity.class)));
@@ -101,21 +103,18 @@ public class SignUp_Activity extends AppCompatActivity {
 
     private void gettoken() {
         FirebaseInstanceId.getInstance().getInstanceId()
-                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
-                        if (!task.isSuccessful()) {
-                            Log.d("getInstanceId failed", task.getException().toString());
-                            return;
-                        }
+                .addOnCompleteListener(task -> {
+                    if (!task.isSuccessful()) {
+                        Log.d("getInstanceId failed", task.getException().toString());
+                        return;
+                    }
 
-                        // Get new Instance ID token
-                        token = Objects.requireNonNull(task.getResult()).getToken();
-                        new SharedPrefManager(getApplicationContext()).saveString("token", token);
+                    // Get new Instance ID token
+                    token = Objects.requireNonNull(task.getResult()).getToken();
+                    new SharedPrefManager(getApplicationContext()).saveString("token", token);
 //                        registerUser(name.getText().toString(),
 //                                mobno.getText().toString(),
 //                                password.getText().toString(), token);
-                    }
                 });
     }
 
@@ -133,13 +132,14 @@ public class SignUp_Activity extends AppCompatActivity {
             return false;
         }
         if (utils.isconnected(getApplicationContext())) {
+            bar.setVisibility(View.VISIBLE);
             compositeDisposable.add(iservice.registerUser(name, mob, pwd, token)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribeWith(new DisposableObserver<String>() {
-
                         @Override
                         public void onNext(String response) {
+                            bar.setVisibility(View.GONE);
                             response = response.substring(1, response.length() - 1);
                             if (response.equals("unregistered")) {
                                 utils.set_snackbar(view, "Mobile number not registered", getApplicationContext(), "error");
@@ -151,6 +151,7 @@ public class SignUp_Activity extends AppCompatActivity {
 
                         @Override
                         public void onError(Throwable e) {
+                            bar.setVisibility(View.GONE);
                             utils.set_snackbar(view, "Server connection failed", getApplicationContext(), "error");
                         }
 
@@ -176,38 +177,4 @@ public class SignUp_Activity extends AppCompatActivity {
         }
         finish();
     }
-
-
-    private class AsyncTaskConnect extends AsyncTask<String, String, Void> {
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            pdialog = new ProgressDialog(SignUp_Activity.this);
-//            pdialog.setMessage("Please wait...It is downloading");
-            pdialog.setIndeterminate(false);
-            pdialog.setCancelable(false);
-            pdialog.show();
-        }
-
-        @Override
-        protected Void doInBackground(String... strings) {
-            try {
-
-                registerUser(name.getText().toString(),
-                        mobno.getText().toString(),
-                        password.getText().toString(), token);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-            pdialog.hide();
-        }
-    }
-
 }

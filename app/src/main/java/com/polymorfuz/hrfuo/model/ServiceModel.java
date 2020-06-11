@@ -5,9 +5,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class ServiceModel {
 
-    @SerializedName("userid")
+    @SerializedName("mobno")
     @Expose
-    private String userid;
+    private String mobno;
 
     @SerializedName("doj")
     @Expose
@@ -33,8 +33,8 @@ public class ServiceModel {
     @Expose
     private String next_promotion;
 
-    public String getUserid() {
-        return userid;
+    public String getMobno() {
+        return mobno;
     }
 
     public String getDoj() {

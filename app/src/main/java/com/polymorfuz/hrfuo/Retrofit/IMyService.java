@@ -16,6 +16,7 @@ public interface IMyService {
     @POST("login")
     @FormUrlEncoded
     Observable<String> loginUser(@Field("mobno") String mobno,
-                                 @Field("password") String password);
+                                 @Field("password") String password,
+                                 @Field("password") String token);
 
 }
