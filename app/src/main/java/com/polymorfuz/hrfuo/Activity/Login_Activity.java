@@ -72,7 +72,7 @@ public class Login_Activity extends AppCompatActivity {
             return;
         }
 
-        if (utils.connectionStatus(getApplicationContext())) {
+        if (utils.isconnected(getApplicationContext())) {
             compositeDisposable.add(iservice.loginUser(mobno, password)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
@@ -100,25 +100,6 @@ public class Login_Activity extends AppCompatActivity {
         } else {
             utils.set_snackbar(view, "Please connect to the internet", getApplicationContext(), "warning");
         }
-
-//        if (utils.connectionStatus(getApplicationContext())) {
-//            compositeDisposable.add(iservice.loginUser(mobno, password)
-//                    .subscribeOn(Schedulers.io())
-//                    .observeOn(AndroidSchedulers.mainThread())
-//                    .subscribe(new Consumer<String>() {
-//                        @Override
-//                        public void accept(String response) throws Exception {
-//                            response = response.substring(1, response.length() - 1);
-//                            if (!(response.equals("contract") || response.equals("apprentice") || response.equals("permanent"))) {
-//                               utils.set_snackbar(view, response,getApplicationContext(),"error");
-//                            } else {
-//                                redirect(response);
-//                            }
-//                        }
-//                    }));
-//        } else {
-//           utils.set_snackbar(view, "Please connect to the internet",getApplicationContext(),"warning");
-//        }
     }
 
     private void redirect(String res) {

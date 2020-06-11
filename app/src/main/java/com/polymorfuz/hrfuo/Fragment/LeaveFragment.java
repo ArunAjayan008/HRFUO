@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.polymorfuz.hrfuo.Adapter.HolidayAdapter;
 import com.polymorfuz.hrfuo.R;
 import com.polymorfuz.hrfuo.Retrofit.Api;
+import com.polymorfuz.hrfuo.Utilities.SharedPrefManager;
 import com.polymorfuz.hrfuo.model.HolidayModel;
 import com.polymorfuz.hrfuo.model.Leave;
 
@@ -28,7 +29,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class LeaveFragment extends Fragment {
     TextView cltaken,eltaken,hpltaken,esitaken,absent,totalleave,bal_cl,bal_el,bal_hpl,tot_bal;
-
+    String id;
     public LeaveFragment() {
         // Required empty public constructor
     }
@@ -38,6 +39,7 @@ public class LeaveFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.fragment_leave, container, false);
+        id=new SharedPrefManager(getContext()).readString("mobno",null );
         cltaken=view.findViewById(R.id.cl_taken_leavfrag);
         eltaken=view.findViewById(R.id.el_taken_leavfrag);
         hpltaken=view.findViewById(R.id.hpl_taken_leavfrag);
@@ -60,7 +62,7 @@ public class LeaveFragment extends Fragment {
 
         Api api=retrofit.create(Api.class);
 
-        Call<List<Leave>> call=api.getleave();
+        Call<List<Leave>> call=api.getleave(id);
         call.enqueue(new Callback<List<Leave>>() {
             @Override
             public void onResponse(Call<List<Leave>> call, Response<List<Leave>> response) {

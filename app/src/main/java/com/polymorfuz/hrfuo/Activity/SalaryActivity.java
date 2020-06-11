@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.polymorfuz.hrfuo.R;
 import com.polymorfuz.hrfuo.Retrofit.Api;
+import com.polymorfuz.hrfuo.Utilities.SharedPrefManager;
 import com.polymorfuz.hrfuo.model.Deduct_Model;
 import com.polymorfuz.hrfuo.model.EarningModel;
 import com.polymorfuz.hrfuo.model.Profile;
@@ -33,11 +34,12 @@ public class SalaryActivity extends AppCompatActivity {
     List<Deduct_Model> deductlist;
     String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
     String[] year = {"2020", "2021"};
-
+    String id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_salary);
+        id=new SharedPrefManager(getApplicationContext()).readString("mobno",null);
         buttonsubmit = findViewById(R.id.buttonsubmit);
         month_spin = findViewById(R.id.spin_mnth);
         year_spin = findViewById(R.id.spin_year);
@@ -80,7 +82,7 @@ public class SalaryActivity extends AppCompatActivity {
                 .build();
 
         Api api = retrofit.create(Api.class);
-        Call<List<EarningModel>> call = api.getearning(month, year);
+        Call<List<EarningModel>> call = api.getearning(month, year,id);
         call.enqueue(new Callback<List<EarningModel>>() {
             @Override
             public void onResponse(Call<List<EarningModel>> call, Response<List<EarningModel>> response) {
@@ -92,7 +94,7 @@ public class SalaryActivity extends AppCompatActivity {
 
             }
         });
-        Call<List<Deduct_Model>> deductcall = api.getdeduct(month, year);
+        Call<List<Deduct_Model>> deductcall = api.getdeduct(month, year,id);
         deductcall.enqueue(new Callback<List<Deduct_Model>>() {
             @Override
             public void onResponse(Call<List<Deduct_Model>> call, Response<List<Deduct_Model>> response) {

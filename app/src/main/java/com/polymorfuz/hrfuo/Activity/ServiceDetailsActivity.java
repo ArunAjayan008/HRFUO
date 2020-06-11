@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import com.polymorfuz.hrfuo.R;
 import com.polymorfuz.hrfuo.Retrofit.Api;
+import com.polymorfuz.hrfuo.Utilities.SharedPrefManager;
 import com.polymorfuz.hrfuo.model.Profile;
 import com.polymorfuz.hrfuo.model.ServiceModel;
 
@@ -21,11 +22,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ServiceDetailsActivity extends AppCompatActivity {
     TextView doj_txt, desig_txt, curnt_desig_txt, dor_txt, last_promotxt, next_promotxt;
-
+String id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sevice_details);
+        id=new SharedPrefManager(getApplicationContext()).readString("mobno",null );
         desig_txt = findViewById(R.id.desig_on_join_sda_txt);
         doj_txt = findViewById(R.id.doj_sda_txt);
         curnt_desig_txt = findViewById(R.id.curnt_desig_sda_txt);
@@ -43,7 +45,7 @@ public class ServiceDetailsActivity extends AppCompatActivity {
 
         Api api = retrofit.create(Api.class);
 
-        Call<List<ServiceModel>> call = api.getservice();
+        Call<List<ServiceModel>> call = api.getservice(id);
 
         call.enqueue(new Callback<List<ServiceModel>>() {
             @Override

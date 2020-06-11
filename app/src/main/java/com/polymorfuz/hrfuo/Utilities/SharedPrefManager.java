@@ -16,10 +16,22 @@ public class SharedPrefManager {
     public void saveString(String name, String value) {
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString(name,value);
-        editor.apply();
+        editor.commit();
     }
     public String readString(String keyName, String defaultValue) {
         defaultValue = preferences.getString(keyName, defaultValue);
         return defaultValue;
     }
+    public void deleteString(String keyname){
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.remove(keyname);
+        editor.commit();
+    }
+    //for logout or something like that
+    public void clearData() {
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.clear();
+        editor.commit();
+    }
+
 }

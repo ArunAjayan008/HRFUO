@@ -11,7 +11,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.polymorfuz.hrfuo.R;
 
 public class UtilityMethods {
-    public boolean connectionStatus(Context context) {
+    public boolean isconnected(Context context) {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         assert cm != null;
         NetworkInfo nInfo = cm.getActiveNetworkInfo();

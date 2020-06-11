@@ -23,26 +23,28 @@ public interface Api {
     Call<List<Profile>> getprofile(
             @Query("id") String id);
 
-    @GET("/getservice?id=44")
-    Call<List<ServiceModel>> getservice();
+    @GET("/getservice")
+    Call<List<ServiceModel>> getservice(@Query("id") String id);
 
-    @GET("/getleave?id=44")
-    Call<List<Leave>> getleave();
+    @GET("/getleave")
+    Call<List<Leave>> getleave(@Query("id") String id);
 
-    @GET("/getnotify?id=44")
-    Call<List<Notifications>> getnotify();
+    @GET("/getnotify")
+    Call<List<Notifications>> getnotify(@Query("id") String id);
 
-    @GET("/getholiday?id=44")
-    Call<List<HolidayModel>> getholidays();
+    @GET("/getholiday")
+    Call<List<HolidayModel>> getholidays(@Query("id") String id);
 
-    @GET("/getearning?id=44")
+    @GET("/getearning")
     Call<List<EarningModel>> getearning(
+            @Query("id") String id,
             @Query("mn") String mn,
             @Query("yr") String yr
     );
 
-    @GET("/getdeduct?id=44")
+    @GET("/getdeduct")
     Call<List<Deduct_Model>> getdeduct(
+            @Query("id") String id,
             @Query("mn") String mn,
             @Query("yr") String yr
     );

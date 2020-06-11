@@ -1,11 +1,7 @@
 package com.polymorfuz.hrfuo.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 
-import android.database.Observable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,8 +10,9 @@ import android.widget.Toast;
 
 import com.polymorfuz.hrfuo.R;
 import com.polymorfuz.hrfuo.Retrofit.Api;
-import com.polymorfuz.hrfuo.Room.ProfileDB;
 import com.polymorfuz.hrfuo.Room.ProfileViewModel;
+import com.polymorfuz.hrfuo.Utilities.SharedPrefManager;
+import com.polymorfuz.hrfuo.Utilities.UtilityMethods;
 import com.polymorfuz.hrfuo.model.Profile;
 
 import java.util.List;
@@ -27,14 +24,19 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ProfileViewActivity extends AppCompatActivity {
-    TextView nametxt, agetxt, gendertxt, qualtxt, dobtxt, addrtxt,empidtxt,mobnotxt;
+    TextView nametxt, agetxt, gendertxt, qualtxt, dobtxt, addrtxt, empidtxt, mobnotxt;
     ProfileViewModel viewModel;
     Button add;
+    UtilityMethods utils=new UtilityMethods();
+    View view;
+    String id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_view);
+        id=new SharedPrefManager(getApplicationContext()).readString("mobno",null );
+        view=getWindow().getDecorView().getRootView();
         nametxt = findViewById(R.id.profilename_pva_txt);
         empidtxt = findViewById(R.id.empid_pva_txt);
         mobnotxt = findViewById(R.id.mobno_pva_txt);
@@ -45,6 +47,7 @@ public class ProfileViewActivity extends AppCompatActivity {
         addrtxt = findViewById(R.id.addr_pva_txt);
         add = findViewById(R.id.add);
         add.setOnClickListener(v -> {
+//            startActivity(new Intent(getApplicationContext(),NewActivity.class));
 //            ProfileDB db = new ProfileDB("Soman", "15", "Male", "Mtech", "15-02-2017");
 //            viewModel.insert(db);
         });
@@ -55,19 +58,23 @@ public class ProfileViewActivity extends AppCompatActivity {
 //                setData(profileDBS);
 //            }
 //        });
-        fetchData();
-    }
-
-    private void setData(List<ProfileDB> db) {
-        if (db.size() > 0) {
-            ProfileDB data = db.get(0);
-            nametxt.setText(data.getEmpname());
-            agetxt.setText(data.getAge());
-            gendertxt.setText(data.getGender());
-            qualtxt.setText(data.getQualification());
-            dobtxt.setText(data.getDob());
+        if (utils.isconnected(getApplicationContext())) {
+        fetchData();}
+        else {
+            utils.set_snackbar(view,"Please connect to the internet", getApplicationContext(), "warning");
         }
     }
+
+//    private void setData(List<ProfileDB> db) {
+//        if (db.size() > 0) {
+//            ProfileDB data = db.get(0);
+//            nametxt.setText(data.getEmpname());
+//            agetxt.setText(data.getAge());
+//            gendertxt.setText(data.getGender());
+//            qualtxt.setText(data.getQualification());
+//            dobtxt.setText(data.getDob());
+//        }
+//    }
 
     private void fetchData() {
         Retrofit retrofit = new Retrofit.Builder()
@@ -77,12 +84,13 @@ public class ProfileViewActivity extends AppCompatActivity {
 
         Api api = retrofit.create(Api.class);
 
-        Call<List<Profile>> call = api.getprofile();
+        Call<List<Profile>> call = api.getprofile(id);
 
         call.enqueue(new Callback<List<Profile>>() {
             @Override
             public void onResponse(Call<List<Profile>> call, Response<List<Profile>> response) {
                 List<Profile> adslist = response.body();
+                assert adslist != null;
                 nametxt.setText(adslist.get(0).getDesig());
                 empidtxt.setText(adslist.get(0).getUserid());
                 mobnotxt.setText(adslist.get(0).getMobno());
@@ -95,7 +103,7 @@ public class ProfileViewActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<Profile>> call, Throwable t) {
-                Toast.makeText(ProfileViewActivity.this, "" + t.getMessage().toString(), Toast.LENGTH_SHORT).show();
+                utils.set_snackbar(view,"Server connection failed", getApplicationContext(), "error");
             }
         });
     }

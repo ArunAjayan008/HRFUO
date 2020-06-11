@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import com.polymorfuz.hrfuo.Adapter.NotificationAdapter;
 import com.polymorfuz.hrfuo.R;
 import com.polymorfuz.hrfuo.Retrofit.Api;
+import com.polymorfuz.hrfuo.Utilities.SharedPrefManager;
 import com.polymorfuz.hrfuo.model.Notifications;
 
 import java.util.List;
@@ -25,10 +26,11 @@ public class NotificationListActivity extends AppCompatActivity {
     NotificationAdapter adapter;
     RecyclerView notifycycler;
     List<Notifications>notify;
-
+String id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        id=new SharedPrefManager(getApplicationContext()).readString("mobno",null );
         setContentView(R.layout.activity_notification_list);
         notifycycler=findViewById(R.id.notify_recycler);
         LinearLayoutManager layoutManager = new LinearLayoutManager(NotificationListActivity.this);
@@ -45,7 +47,7 @@ public class NotificationListActivity extends AppCompatActivity {
                 .build();
         Api api=retrofit.create(Api.class);
 
-        Call<List<Notifications>>call=api.getnotify();
+        Call<List<Notifications>>call=api.getnotify(id);
         call.enqueue(new Callback<List<Notifications>>() {
             @Override
             public void onResponse(Call<List<Notifications>> call, Response<List<Notifications>> response) {

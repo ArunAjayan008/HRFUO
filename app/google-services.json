@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "241721729383",
+    "firebase_url": "https://hrfuo-2e3e6.firebaseio.com",
+    "project_id": "hrfuo-2e3e6",
+    "storage_bucket": "hrfuo-2e3e6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:241721729383:android:cdd74567da57d3001d4fc2",
+        "android_client_info": {
+          "package_name": "com.polymorfuz.hrfuo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "241721729383-dg1mrria8oem6i5gsu2kod3hvsafb4ms.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.polymorfuz.hrfuo",
+            "certificate_hash": "d40dfc06ea82e95674a603f7b8ff4701b4f018fb"
+          }
+        },
+        {
+          "client_id": "241721729383-l31qrj0bdrl1uqjvdtavroptjcu9mueb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBnqV4JImB2u-ZrNPDJywCITyqCBaQZ4XU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "241721729383-l31qrj0bdrl1uqjvdtavroptjcu9mueb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
