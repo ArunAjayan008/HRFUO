@@ -142,9 +142,13 @@ public class SignUp_Activity extends AppCompatActivity {
                             response = response.substring(1, response.length() - 1);
                             if (response.equals("unregistered")) {
                                 utils.set_snackbar(view, "Mobile number not registered", getApplicationContext(), "error");
+                            } else if (response.equals("User already exists")) {
+                                utils.set_snackbar(view, response, getApplicationContext(), "error");
                             } else {
                                 new SharedPrefManager(getApplicationContext()).saveString("mobno", mob);
-                                redirect(response);
+                                new SharedPrefManager(getApplicationContext()).saveString("type", response);
+                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                finish();
                             }
                         }
 
@@ -164,17 +168,6 @@ public class SignUp_Activity extends AppCompatActivity {
             utils.set_snackbar(view, "Please connect to the internet", getApplicationContext(), "warning");
         }
         return true;
-    }
-
-    private void redirect(String res) {
-        if (res.equals("contract")) {
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-        } else if (res.equals("apprentice")) {
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-        } else if (res.equals("permanent")) {
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-        }
-        finish();
     }
 
     @Override

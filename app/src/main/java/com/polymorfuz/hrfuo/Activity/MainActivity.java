@@ -1,5 +1,6 @@
 package com.polymorfuz.hrfuo.Activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
@@ -10,6 +11,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.polymorfuz.hrfuo.R;
 import com.polymorfuz.hrfuo.Retrofit.Api;
 import com.polymorfuz.hrfuo.Utilities.Config;
@@ -28,6 +32,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MainActivity extends AppCompatActivity {
     CardView profile_card, services_card, salary_card, leave_card, notify_card, other_card;
     View logid;
+    String id, type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,56 +45,37 @@ public class MainActivity extends AppCompatActivity {
         notify_card = findViewById(R.id.notify_btn_ma);
         other_card = findViewById(R.id.others_btn_ma);
         logid = findViewById(R.id.toolbar).findViewById(R.id.logid);
+        id = new SharedPrefManager(getApplicationContext()).readString("id", "null");
+        type = new SharedPrefManager(getApplicationContext()).readString("type", null);
+        if (id.equals("null")) {
+            GetID getID = new GetID();
+            getID.execute();
+            subscribeTopic();
+        }
 
-        GetID getID = new GetID();
-        getID.execute();
-
-        profile_card.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), ProfileViewActivity.class));
-            }
-        });
-        services_card.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        profile_card.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(), ProfileViewActivity.class)));
+        services_card.setOnClickListener(v -> {
+            if (type.equals("casuals")) {
+                startActivity(new Intent(getApplicationContext(), Casual_ServiceActivity.class));
+            } else if (type.equals("permanent")) {
                 startActivity(new Intent(getApplicationContext(), ServiceDetailsActivity.class));
-
             }
         });
-        salary_card.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        salary_card.setOnClickListener(v -> {
+            if (type.equals("casuals")) {
+                startActivity(new Intent(getApplicationContext(), CasualSalaryActivity.class));
+            } else if (type.equals("permanent")) {
                 startActivity(new Intent(getApplicationContext(), SalaryActivity.class));
             }
         });
-        leave_card.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        leave_card.setOnClickListener(v -> {
+
                 startActivity(new Intent(getApplicationContext(), LeaveActivity.class));
 
-            }
         });
-        notify_card.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), NextActivity.class));
-
-            }
-        });
-        other_card.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), PFActivity.class));
-
-            }
-        });
-        logid.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Logged User", Toast.LENGTH_LONG).show();
-            }
-        });
+        notify_card.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(), NextActivity.class)));
+        other_card.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(), PFActivity.class)));
+        logid.setOnClickListener(v -> Toast.makeText(getApplicationContext(), "Logged User", Toast.LENGTH_LONG).show());
     }
 
     private class GetID extends AsyncTask<Void, Void, Void> {
@@ -127,5 +113,14 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         finishAffinity();
+    }
+
+    private void subscribeTopic() {
+        FirebaseMessaging.getInstance().subscribeToTopic("hrfuo")
+                .addOnCompleteListener(task -> {
+                    if (!task.isSuccessful()) {
+                        //                    sendtoserver();
+                    }
+                });
     }
 }

@@ -1,5 +1,7 @@
 package com.polymorfuz.hrfuo.Retrofit;
 
+import com.polymorfuz.hrfuo.Utilities.Config;
+
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
@@ -11,7 +13,7 @@ public class RetrofitClient {
     public static Retrofit getPostInstance(){
         if(postinstance==null)
             postinstance=new Retrofit.Builder()
-                    .baseUrl("http://192.168.0.5:3000/")
+                    .baseUrl(Config.SERVER_IP)
                     .addConverterFactory(ScalarsConverterFactory.create())
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .build();

@@ -13,4 +13,5 @@ public class Config {
     public static final int NOTIFICATION_ID_BIG_IMAGE = 101;
 
     public static final String SHARED_PREF = "ah_firebase";
+    public static final String SERVER_IP = "http://ec2-13-233-128-2.ap-south-1.compute.amazonaws.com:3000";
 }

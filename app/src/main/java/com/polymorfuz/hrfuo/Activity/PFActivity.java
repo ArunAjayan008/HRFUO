@@ -8,6 +8,7 @@ import android.view.View;
 import android.webkit.ValueCallback;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ProgressBar;
 
 import com.polymorfuz.hrfuo.R;
 import com.polymorfuz.hrfuo.Retrofit.Api;
@@ -31,12 +32,15 @@ public class PFActivity extends AppCompatActivity {
     String id;
     UtilityMethods utils = new UtilityMethods();
     String uan, password;
+    ProgressBar bar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_p_f);
         view = getWindow().getDecorView().getRootView();
+        bar=findViewById(R.id.progressBar);
+        bar.setVisibility(View.VISIBLE);
         id = new SharedPrefManager(getApplicationContext()).readString("id", null);
         webView = findViewById(R.id.webview);
         webView.getSettings().setJavaScriptEnabled(true);
@@ -95,7 +99,7 @@ public class PFActivity extends AppCompatActivity {
                         "document.getElementById('username').value = '" + uan + "';";
 
                 view.evaluateJavascript(js, s -> {
-
+                    bar.setVisibility(View.GONE);
                 });
             }
         });
