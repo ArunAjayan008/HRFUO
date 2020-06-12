@@ -14,7 +14,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.NextActivity"></activity>
+        <activity
+            android:name=".Activity.SplashActivity"
+            android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Activity.NextActivity" />
 
         <service
             android:name=".Services.MyFirebaseInstanceIDService"
@@ -29,13 +38,7 @@
         <activity android:name=".Activity.Test" />
         <activity android:name=".Activity.Start_Language_Activity" />
         <activity android:name=".Activity.ViewSalaryActivity" />
-        <activity android:name=".Activity.SignUp_Activity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".Activity.SignUp_Activity"/>
         <activity android:name=".Activity.Login_Activity" />
         <activity android:name=".Activity.OthersActivity" />
         <activity android:name=".Activity.SalaryActivity" />

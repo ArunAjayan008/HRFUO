@@ -77,20 +77,19 @@ public class SignUp_Activity extends AppCompatActivity {
         signup = findViewById(R.id.btn_sign_up);
         mainlayout = findViewById(R.id.mainlayout);
         bar = findViewById(R.id.progressBar);
-        signup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //hide keyboard before going to next activity, otherwise causes error
-                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                assert imm != null;
-                imm.hideSoftInputFromWindow(mainlayout.getWindowToken(), 0);
-                registerUser(name.getText().toString(),
-                        mobno.getText().toString(),
-                        password.getText().toString(), token);
-            }
+        signup.setOnClickListener(view -> {
+            //hide keyboard before going to next activity, otherwise causes error
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            assert imm != null;
+            imm.hideSoftInputFromWindow(mainlayout.getWindowToken(), 0);
+            registerUser(name.getText().toString(),
+                    mobno.getText().toString(),
+                    password.getText().toString(), token);
         });
-        login.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(), Login_Activity.class)));
-
+        login.setOnClickListener(v -> {
+            startActivity(new Intent(getApplicationContext(), Login_Activity.class));
+            finish();
+        });
     }
 
     private void setAppLocale(String localcode) {
@@ -176,5 +175,11 @@ public class SignUp_Activity extends AppCompatActivity {
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
         }
         finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finishAffinity();
     }
 }

@@ -142,4 +142,10 @@ public class Login_Activity extends AppCompatActivity {
                     token = Objects.requireNonNull(task.getResult()).getToken();
                 });
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finishAffinity();
+    }
 }
