@@ -98,9 +98,11 @@ public class Login_Activity extends AppCompatActivity {
                             if (!(response.equals("contract") || response.equals("apprentice") || response.equals("permanent"))) {
                                 utils.set_snackbar(view, response, getApplicationContext(), "error");
                             } else {
-                                redirect(response);
                                 new SharedPrefManager(getApplicationContext()).saveString("token", token);
                                 new SharedPrefManager(getApplicationContext()).saveString("mobno", mobno);
+                                new SharedPrefManager(getApplicationContext()).saveString("type", response);
+                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                finish();
                             }
                         }
 
@@ -120,16 +122,6 @@ public class Login_Activity extends AppCompatActivity {
         }
     }
 
-    private void redirect(String res) {
-        if (res.equals("contract")) {
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-        } else if (res.equals("apprentice")) {
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-        } else if (res.equals("permanent")) {
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-        }
-        finish();
-    }
     private void gettoken() {
         FirebaseInstanceId.getInstance().getInstanceId()
                 .addOnCompleteListener(task -> {

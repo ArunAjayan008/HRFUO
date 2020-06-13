@@ -47,8 +47,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:drawableTop="@android:drawable/ic_input_add"
+                        android:drawableTop="@drawable/profile"
                         android:text="@string/profile_ma"
+                        android:drawablePadding="10dp"
                         android:textColor="@color/colorBlack" />
                 </androidx.cardview.widget.CardView>
 
@@ -66,7 +67,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:drawableTop="@android:drawable/ic_btn_speak_now"
+                        android:drawableTop="@drawable/files"
+                        android:drawablePadding="10dp"
                         android:text="@string/service_ma"
                         android:textColor="@color/colorBlack" />
 
@@ -96,9 +98,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:drawableTop="@android:drawable/ic_lock_idle_low_battery"
-                        android:drawableTint="@color/cardview_dark_background"
+                        android:drawableTop="@drawable/money"
                         android:text="@string/salary_ma"
+                        android:drawablePadding="10dp"
                         android:textColor="@color/colorBlack" />
 
                 </androidx.cardview.widget.CardView>
@@ -117,9 +119,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:drawableTop="@android:drawable/ic_media_rew"
-                        android:drawableTint="@color/cardview_dark_background"
+                        android:drawableTop="@drawable/attendance"
                         android:text="@string/leave_ma"
+                        android:drawablePadding="10dp"
                         android:textColor="@color/colorBlack" />
 
                 </androidx.cardview.widget.CardView>
@@ -148,9 +150,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:drawableTop="@android:drawable/ic_menu_camera"
-                        android:drawableTint="@color/cardview_dark_background"
+                        android:drawableTop="@drawable/comment"
                         android:text="@string/notifications_ma"
+                        android:drawablePadding="10dp"
                         android:textColor="@color/colorBlack" />
 
                 </androidx.cardview.widget.CardView>
@@ -170,11 +172,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:drawableTop="@android:drawable/ic_menu_edit"
-                        android:drawableTint="@color/cardview_dark_background"
+                        android:drawableTop="@drawable/note"
+                        android:gravity="center"
                         android:text="@string/others_ma"
+                        android:drawablePadding="10dp"
                         android:textColor="@color/colorBlack"
-                        android:textSize="12sp" />
+                        android:textSize="14sp" />
 
                 </androidx.cardview.widget.CardView>
 
