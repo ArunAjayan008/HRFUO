@@ -31,7 +31,7 @@
     <!--    Main Activity-->
     <string name="salary_ma">Salary</string>
     <string name="leave_ma">Leave</string>
-    <string name="notifications_ma">Information</string>
+    <string name="notifications_ma">Notification</string>
     <string name="others_ma">Others</string>
     <string name="mob_no_logA">Mobile number</string>
     <string name="paswd_loga">Password</string>

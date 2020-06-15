@@ -92,6 +92,19 @@ public class SalaryActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<EarningModel>> call, Response<List<EarningModel>> response) {
                 earnlist = response.body();
+                Call<List<Deduct_Model>> deductcall = api.getdeduct(id,month, year);
+                deductcall.enqueue(new Callback<List<Deduct_Model>>() {
+                    @Override
+                    public void onResponse(Call<List<Deduct_Model>> call, Response<List<Deduct_Model>> response) {
+                        deductlist = response.body();
+                        setData(earnlist, deductlist);
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<Deduct_Model>> call, Throwable t) {
+
+                    }
+                });
             }
 
             @Override
@@ -99,19 +112,7 @@ public class SalaryActivity extends AppCompatActivity {
 
             }
         });
-        Call<List<Deduct_Model>> deductcall = api.getdeduct(id,month, year);
-        deductcall.enqueue(new Callback<List<Deduct_Model>>() {
-            @Override
-            public void onResponse(Call<List<Deduct_Model>> call, Response<List<Deduct_Model>> response) {
-                deductlist = response.body();
-                setData(earnlist, deductlist);
-            }
 
-            @Override
-            public void onFailure(Call<List<Deduct_Model>> call, Throwable t) {
-
-            }
-        });
 
     }
 

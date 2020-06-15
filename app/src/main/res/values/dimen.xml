@@ -6,4 +6,5 @@
     <dimen name="min_height">16dp</dimen>
 
     <dimen name="table_label">0.8</dimen>
+    <dimen name="main_menu_label">16sp</dimen>
 </resources>

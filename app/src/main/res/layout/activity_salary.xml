@@ -35,7 +35,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="end"
                     android:text="Select Year" />
 
                 <Spinner
@@ -62,7 +61,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="end"
                     android:text="Select Month" />
 
                 <Spinner
@@ -70,7 +68,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="end"
                     android:layout_marginStart="25dp" />
 
 
@@ -78,11 +75,13 @@
 
             <Button
                 android:id="@+id/buttonsubmit"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="15dp"
                 android:layout_gravity="center"
-                android:background="@drawable/btnbg"
                 android:clickable="true"
+                android:background="@color/colorFadeBlue"
+                android:foreground="?android:attr/selectableItemBackground"
                 android:text="Submit" />
 
             <TableLayout
