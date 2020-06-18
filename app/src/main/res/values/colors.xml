@@ -6,6 +6,7 @@
     <color name="colorPrimaryBlue">#0048c4</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorBlack">#000000</color>
+    <color name="colorDark">#404040</color>
     <color name="colorLightBlue">#03A9F4</color>
     <color name="colorDarkBlue">#3F51B5</color>
     <color name="colorText">#4097c2ff</color>
@@ -19,5 +20,6 @@
     <color name="colorRed">#F44336</color>
     <color name="colorOrange">#FF7B00</color>
     <color name="colorGreen">#4CAF50</color>
-    <color name="colorCream">#F6F6F6</color>
+    <color name="colorDullBlue">#F2F3FB</color>
+    <color name="colorCream">#F8F5F5</color>
 </resources>

@@ -17,15 +17,13 @@
         android:textColor="@color/colorBlack"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/toolbar"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView">
@@ -42,25 +40,23 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/cell_shape"
                 android:weightSum="2">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/cell_shape"
                     android:padding="10dp"
                     android:text="@string/doj_sda"
                     android:textColor="@android:color/black"
                     android:textSize="16sp" />
-
 
                 <TextView
                     android:id="@+id/doj_sda_txt"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/cell_shape"
                     android:gravity="end"
                     android:hint="@string/no_data"
                     android:padding="10dp"
@@ -76,7 +72,6 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/cell_shape"
                     android:padding="10dp"
                     android:text="@string/desig_on_join_sda"
                     android:textColor="@android:color/black"
@@ -88,7 +83,6 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/cell_shape"
                     android:gravity="end"
                     android:hint="@string/no_data"
                     android:padding="10dp"
@@ -98,13 +92,13 @@
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="@drawable/cell_shape">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/cell_shape"
                     android:padding="10dp"
                     android:text="@string/current_desig_sda"
                     android:textColor="@android:color/black"
@@ -116,7 +110,6 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/cell_shape"
                     android:gravity="end"
                     android:hint="@string/no_data"
                     android:padding="10dp"
@@ -133,7 +126,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/cell_shape"
+
                     android:padding="10dp"
                     android:text="@string/dor_sda"
                     android:textColor="@android:color/black"
@@ -145,7 +138,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/cell_shape"
+
                     android:gravity="end"
                     android:hint="@string/no_data"
                     android:padding="10dp"
@@ -155,13 +148,14 @@
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="@drawable/cell_shape">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/cell_shape"
+
                     android:padding="10dp"
                     android:text="@string/date_of_last_promotion_sda"
                     android:textColor="@android:color/black"
@@ -173,7 +167,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/cell_shape"
+
                     android:gravity="end"
                     android:hint="@string/no_data"
                     android:padding="10dp"
@@ -189,7 +183,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/cell_shape"
+
                     android:padding="10dp"
                     android:text="@string/date_of_next_promotion_sda"
                     android:textColor="@android:color/black"
@@ -201,7 +195,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/cell_shape"
+
                     android:gravity="end"
                     android:hint="@string/no_data"
                     android:padding="10dp"

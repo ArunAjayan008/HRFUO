@@ -66,9 +66,7 @@
         android:id="@+id/constraintLayout2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
         android:layout_marginTop="50dp"
-        android:layout_marginEnd="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
@@ -84,6 +82,7 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/cell_shape"
                 android:weightSum="2">
 
                 <TextView
@@ -91,7 +90,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:padding="10dp"
-                    android:background="@drawable/cell_shape"
                     android:text="@string/empid_pva"
                     android:textSize="16sp"
                     android:textColor="@android:color/black" />
@@ -102,7 +100,6 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/cell_shape"
                     android:gravity="end"
                     android:hint="@string/no_data"
                     android:padding="10dp"
@@ -119,7 +116,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:padding="10dp"
-                    android:background="@drawable/cell_shape"
                     android:text="@string/mobno_pva"
                     android:textSize="16sp"
                     android:textColor="@android:color/black" />
@@ -130,7 +126,6 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/cell_shape"
                     android:gravity="end"
                     android:hint="@string/no_data"
                     android:padding="10dp"
@@ -141,6 +136,7 @@
                 android:id="@+id/tableRow"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/cell_shape"
                 android:weightSum="2">
 
                 <TextView
@@ -148,7 +144,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:padding="10dp"
-                    android:background="@drawable/cell_shape"
                     android:text="@string/age_pva"
                     android:textSize="16sp"
                     android:textColor="@android:color/black" />
@@ -159,7 +154,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/cell_shape"
+                    
                     android:gravity="end"
                     android:hint="@string/no_data"
                     android:padding="10dp"
@@ -178,7 +173,7 @@
                     android:layout_weight="1"
                     android:padding="10dp"
                     android:text="@string/dob_pva"
-                    android:background="@drawable/cell_shape"
+                    
                     android:textSize="16sp"
                     android:textColor="@android:color/black" />
 
@@ -189,7 +184,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="end"
-                    android:background="@drawable/cell_shape"
+                    
                     android:hint="@string/no_data"
                     android:padding="10dp"
                     android:textSize="16sp" />
@@ -199,6 +194,7 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/cell_shape"
                 android:weightSum="2">
 
                 <TextView
@@ -206,7 +202,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:padding="10dp"
-                    android:background="@drawable/cell_shape"
+                    
                     android:text="@string/gender_pva"
                     android:textSize="16sp"
                     android:textColor="@android:color/black" />
@@ -217,7 +213,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/cell_shape"
+                    
                     android:gravity="end"
                     android:hint="@string/no_data"
                     android:padding="10dp"
@@ -236,7 +232,7 @@
                     android:layout_weight="1"
                     android:padding="10dp"
                     android:text="@string/qualification_pva"
-                    android:background="@drawable/cell_shape"
+                    
                     android:textSize="16sp"
                     android:textColor="@android:color/black" />
 
@@ -248,7 +244,7 @@
                     android:layout_weight="1"
                     android:gravity="end"
                     android:hint="@string/no_data"
-                    android:background="@drawable/cell_shape"
+                    
                     android:padding="10dp"
                     android:textSize="16sp" />
 
@@ -257,6 +253,7 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/cell_shape"
                 android:weightSum="2">
 
                 <TextView
@@ -265,7 +262,7 @@
                     android:layout_weight="1"
                     android:padding="10dp"
                     android:text="@string/address_pva"
-                    android:background="@drawable/cell_shape"
+                    
                     android:textSize="16sp"
                     android:textColor="@android:color/black" />
 
@@ -278,7 +275,7 @@
                     android:gravity="end"
                     android:hint="@string/no_data"
                     android:padding="10dp"
-                    android:background="@drawable/cell_shape"
+                    
                     android:textSize="16sp" />
 
             </TableRow>

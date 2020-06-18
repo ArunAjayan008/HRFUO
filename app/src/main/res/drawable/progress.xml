@@ -23,7 +23,7 @@
             android:width="48dip" />
 
         <gradient
-            android:centerColor="@color/colorWhite"
+            android:centerColor="@color/colorPrimaryDark"
             android:centerY="0.50"
             android:endColor="@color/colorWhite"
             android:startColor="@color/colorDimWhiten"

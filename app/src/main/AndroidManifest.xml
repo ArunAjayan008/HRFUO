@@ -14,6 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".Activity.EPF_ESI_Activity"></activity>
         <activity android:name=".Activity.CasualSalaryActivity" />
         <activity android:name=".Activity.Casual_ServiceActivity" />
         <activity
