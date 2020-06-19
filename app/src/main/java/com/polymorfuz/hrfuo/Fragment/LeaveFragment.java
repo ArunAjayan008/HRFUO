@@ -3,18 +3,27 @@ package com.polymorfuz.hrfuo.Fragment;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.polymorfuz.hrfuo.Adapter.HolidayAdapter;
+import com.polymorfuz.hrfuo.Adapter.LeaveAdapter;
 import com.polymorfuz.hrfuo.R;
 import com.polymorfuz.hrfuo.Retrofit.Api;
 import com.polymorfuz.hrfuo.Utilities.SharedPrefManager;
-import com.polymorfuz.hrfuo.model.HolidayModel;
-import com.polymorfuz.hrfuo.model.Leave;
+import com.polymorfuz.hrfuo.Utilities.UtilityMethods;
+import com.polymorfuz.hrfuo.model.MonthlyLeaveModel;
+import com.polymorfuz.hrfuo.model.LeaveSummaryModel;
+import com.polymorfuz.hrfuo.model.MonthlyLeaveModel;
 
 import java.util.List;
 
@@ -28,8 +37,18 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * A simple {@link Fragment} subclass.
  */
 public class LeaveFragment extends Fragment {
-    TextView cltaken,eltaken,hpltaken,esitaken,absent,totalleave,bal_cl,bal_el,bal_hpl,tot_bal;
+    TextView cltaken, eltaken, hpltaken, esitaken, absent, totalleave, bal_cl, bal_el, bal_hpl;
     String id;
+    RecyclerView leavecycler;
+    Spinner year, month;
+    Button submit;
+    LeaveAdapter adapter;
+    String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+    String[] years = {"2020", "2021"};
+    List<MonthlyLeaveModel> leaveModels;
+    UtilityMethods utils=new UtilityMethods();
+    LinearLayout leavelayout;
+
     public LeaveFragment() {
         // Required empty public constructor
     }
@@ -38,35 +57,50 @@ public class LeaveFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view= inflater.inflate(R.layout.fragment_leave, container, false);
-        id=new SharedPrefManager(getContext()).readString("mobno",null );
-        cltaken=view.findViewById(R.id.cl_taken_leavfrag);
-        eltaken=view.findViewById(R.id.el_taken_leavfrag);
-        hpltaken=view.findViewById(R.id.hpl_taken_leavfrag);
-        esitaken=view.findViewById(R.id.esi_taken_leavfrag);
-        absent=view.findViewById(R.id.absent_leavfrag);
-        totalleave=view.findViewById(R.id.total_taken);
-        bal_cl=view.findViewById(R.id.cl_bal);
-        bal_el=view.findViewById(R.id.el_bal);
-        bal_hpl=view.findViewById(R.id.hpl_bal);
-        tot_bal=view.findViewById(R.id.balance_leav);
+        View view = inflater.inflate(R.layout.fragment_leave, container, false);
+        leavecycler = view.findViewById(R.id.leave_recycler);
+        LinearLayoutManager lmgr = new LinearLayoutManager(getContext());
+        leavecycler.setLayoutManager(lmgr);
+        id = new SharedPrefManager(getContext()).readString("mobno", null);
+        leavelayout = view.findViewById(R.id.leave_show_layout);
+        cltaken = view.findViewById(R.id.cl_taken_leavfrag);
+        eltaken = view.findViewById(R.id.el_taken_leavfrag);
+        hpltaken = view.findViewById(R.id.hpl_taken_leavfrag);
+        esitaken = view.findViewById(R.id.esi_taken_leavfrag);
+        absent = view.findViewById(R.id.absent_leavfrag);
+        totalleave = view.findViewById(R.id.total_taken);
+        bal_cl = view.findViewById(R.id.cl_bal);
+        bal_el = view.findViewById(R.id.el_bal);
+        bal_hpl = view.findViewById(R.id.hpl_bal);
+        year = view.findViewById(R.id.spin_year);
+        month = view.findViewById(R.id.spin_mnth);
+        submit = view.findViewById(R.id.buttonsubmit);
+        ArrayAdapter<String> monthadapter = new ArrayAdapter<String>(getContext(), R.layout.support_simple_spinner_dropdown_item, months);
+        month.setAdapter(monthadapter);
+        ArrayAdapter<String> year_adapter = new ArrayAdapter<String>(getContext(), R.layout.support_simple_spinner_dropdown_item, years);
+        year.setAdapter(year_adapter);
+        submit.setOnClickListener(v -> {
+            String monthval = month.getSelectedItem().toString();
+            String yearval = year.getSelectedItem().toString();
+            fetchLeave(monthval, yearval,view);
+        });
         return view;
     }
 
 
-    private void fetchdata(){
-        Retrofit retrofit=new Retrofit.Builder()
+    private void fetchdata() {
+        Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Api.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        Api api=retrofit.create(Api.class);
+        Api api = retrofit.create(Api.class);
 
-        Call<List<Leave>> call=api.getleave(id);
-        call.enqueue(new Callback<List<Leave>>() {
+        Call<List<LeaveSummaryModel>> call = api.getleave(id);
+        call.enqueue(new Callback<List<LeaveSummaryModel>>() {
             @Override
-            public void onResponse(Call<List<Leave>> call, Response<List<Leave>> response) {
-                List<Leave>leaves=response.body();
+            public void onResponse(Call<List<LeaveSummaryModel>> call, Response<List<LeaveSummaryModel>> response) {
+                List<LeaveSummaryModel> leaves = response.body();
                 cltaken.setText(leaves.get(0).getCl());
                 eltaken.setText(leaves.get(0).getEl());
                 hpltaken.setText(leaves.get(0).getHpl());
@@ -80,9 +114,39 @@ public class LeaveFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<List<Leave>> call, Throwable t) {
+            public void onFailure(Call<List<LeaveSummaryModel>> call, Throwable t) {
 
             }
         });
+    }
+
+
+    private void fetchLeave(String mnth, String year,View v) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Api.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        Api api = retrofit.create(Api.class);
+
+        Call<List<MonthlyLeaveModel>> call = api.getleaves(id, mnth, year);
+        if (utils.isconnected(getContext())) {
+            call.enqueue(new Callback<List<MonthlyLeaveModel>>() {
+                @Override
+                public void onResponse(Call<List<MonthlyLeaveModel>> call, Response<List<MonthlyLeaveModel>> response) {
+                    leaveModels = response.body();
+                    adapter = new LeaveAdapter(getContext(), leaveModels);
+                    leavecycler.setAdapter(adapter);
+                    leavelayout.setVisibility(View.VISIBLE);
+                }
+
+                @Override
+                public void onFailure(Call<List<MonthlyLeaveModel>> call, Throwable t) {
+
+                }
+            });
+        } else {
+            utils.set_snackbar(v, "Please connect to the internet", getContext(), "warning");
+        }
     }
 }

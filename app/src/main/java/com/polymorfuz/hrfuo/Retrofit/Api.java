@@ -2,10 +2,11 @@ package com.polymorfuz.hrfuo.Retrofit;
 
 import com.polymorfuz.hrfuo.Utilities.Config;
 import com.polymorfuz.hrfuo.model.Deduct_Model;
-import com.polymorfuz.hrfuo.model.EPFModel;
+import com.polymorfuz.hrfuo.model.EPF_ESIModel;
 import com.polymorfuz.hrfuo.model.EarningModel;
 import com.polymorfuz.hrfuo.model.HolidayModel;
-import com.polymorfuz.hrfuo.model.Leave;
+import com.polymorfuz.hrfuo.model.LeaveSummaryModel;
+import com.polymorfuz.hrfuo.model.MonthlyLeaveModel;
 import com.polymorfuz.hrfuo.model.Notifications;
 import com.polymorfuz.hrfuo.model.Profile;
 import com.polymorfuz.hrfuo.model.ServiceModel;
@@ -29,7 +30,7 @@ public interface Api {
     Call<List<ServiceModel>> getservice(@Query("id") String id);
 
     @GET("/getleave")
-    Call<List<Leave>> getleave(@Query("id") String id);
+    Call<List<LeaveSummaryModel>> getleave(@Query("id") String id);
 
     @GET("/getnotify")
     Call<List<Notifications>> getnotify(@Query("id") String id);
@@ -51,10 +52,16 @@ public interface Api {
             @Query("yr") String yr
     );
 
-    @GET("/getepf")
-    Call<List<EPFModel>> getPF(@Query("id") String id);
+    @GET("/getepfesi")
+    Call<List<EPF_ESIModel>> getPF(@Query("id") String id);
 
     @GET("/getid")
     Call<String> getID(@Query("id") String id);
+
+    @GET("/getleavedays")
+    Call<List<MonthlyLeaveModel>> getleaves(@Query("id") String id,
+                                            @Query("mn") String mn,
+                                            @Query("yr") String yr);
+
 }
 

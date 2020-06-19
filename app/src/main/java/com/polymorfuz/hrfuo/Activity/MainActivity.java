@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
 
         });
         notify_card.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(), NotificationListActivity.class)));
-        other_card.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(), PFActivity.class)));
+        other_card.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(), EPF_ESI_Activity.class)));
         logid.setOnClickListener(v -> Toast.makeText(getApplicationContext(), "Logged User", Toast.LENGTH_LONG).show());
     }
 

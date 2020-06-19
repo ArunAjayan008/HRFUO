@@ -3,7 +3,7 @@ package com.polymorfuz.hrfuo.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Leave {
+public class LeaveSummaryModel {
     @SerializedName("cl")
     @Expose
     private int cl;
