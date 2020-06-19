@@ -23,7 +23,6 @@ import com.polymorfuz.hrfuo.Utilities.SharedPrefManager;
 import com.polymorfuz.hrfuo.Utilities.UtilityMethods;
 import com.polymorfuz.hrfuo.model.MonthlyLeaveModel;
 import com.polymorfuz.hrfuo.model.LeaveSummaryModel;
-import com.polymorfuz.hrfuo.model.MonthlyLeaveModel;
 
 import java.util.List;
 
@@ -61,7 +60,7 @@ public class LeaveFragment extends Fragment {
         leavecycler = view.findViewById(R.id.leave_recycler);
         LinearLayoutManager lmgr = new LinearLayoutManager(getContext());
         leavecycler.setLayoutManager(lmgr);
-        id = new SharedPrefManager(getContext()).readString("mobno", null);
+        id = new SharedPrefManager(getContext()).readString("id", null);
         leavelayout = view.findViewById(R.id.leave_show_layout);
         cltaken = view.findViewById(R.id.cl_taken_leavfrag);
         eltaken = view.findViewById(R.id.el_taken_leavfrag);
@@ -134,10 +133,11 @@ public class LeaveFragment extends Fragment {
             call.enqueue(new Callback<List<MonthlyLeaveModel>>() {
                 @Override
                 public void onResponse(Call<List<MonthlyLeaveModel>> call, Response<List<MonthlyLeaveModel>> response) {
+                    leavelayout.setVisibility(View.VISIBLE);
                     leaveModels = response.body();
                     adapter = new LeaveAdapter(getContext(), leaveModels);
                     leavecycler.setAdapter(adapter);
-                    leavelayout.setVisibility(View.VISIBLE);
+
                 }
 
                 @Override
