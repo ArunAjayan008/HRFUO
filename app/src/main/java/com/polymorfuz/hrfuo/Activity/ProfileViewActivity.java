@@ -1,6 +1,7 @@
 package com.polymorfuz.hrfuo.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
@@ -8,7 +9,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.polymorfuz.hrfuo.R;
 import com.polymorfuz.hrfuo.Retrofit.Api;
@@ -17,9 +17,13 @@ import com.polymorfuz.hrfuo.Utilities.SharedPrefManager;
 import com.polymorfuz.hrfuo.Utilities.UtilityMethods;
 import com.polymorfuz.hrfuo.model.Profile;
 
+import java.io.IOException;
 import java.util.List;
 
 import BroadcastReceiver.NetworkChangeReceiver;
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -30,18 +34,20 @@ public class ProfileViewActivity extends AppCompatActivity implements NetworkCha
     TextView nametxt, agetxt, gendertxt, qualtxt, dobtxt, addrtxt, empidtxt, mobnotxt;
     ProfileViewModel viewModel;
     Button add;
-    UtilityMethods utils=new UtilityMethods();
+    UtilityMethods utils = new UtilityMethods();
     View view;
     String id;
     NetworkChangeReceiver receiver;
+    ConstraintLayout no_network;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_view);
-        receiver=new NetworkChangeReceiver(this);
-        id=new SharedPrefManager(getApplicationContext()).readString("id",null );
-        view=getWindow().getDecorView().getRootView();
+        receiver = new NetworkChangeReceiver(this);
+        id = new SharedPrefManager(getApplicationContext()).readString("jwt", null);
+        view = getWindow().getDecorView().getRootView();
+        no_network = findViewById(R.id.no_network);
         nametxt = findViewById(R.id.profilename_pva_txt);
         empidtxt = findViewById(R.id.empid_pva_txt);
         mobnotxt = findViewById(R.id.mobno_pva_txt);
@@ -64,9 +70,11 @@ public class ProfileViewActivity extends AppCompatActivity implements NetworkCha
 //            }
 //        });
         if (utils.isconnected(getApplicationContext())) {
-        fetchData();}
-        else {
-            utils.set_snackbar(view,"Please connect to the internet", getApplicationContext(), "warning");
+            no_network.setVisibility(View.GONE);
+            fetchData();
+        } else {
+            utils.set_snackbar(view, "Please connect to the internet", getApplicationContext(), "warning");
+            no_network.setVisibility(View.VISIBLE);
         }
     }
 
@@ -82,7 +90,17 @@ public class ProfileViewActivity extends AppCompatActivity implements NetworkCha
 //    }
 
     private void fetchData() {
+        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
+            @Override
+            public okhttp3.Response intercept(Chain chain) throws IOException {
+                Request newRequest = chain.request().newBuilder()
+                        .addHeader("Authorization", "Bearer " + id)
+                        .build();
+                return chain.proceed(newRequest);
+            }
+        }).build();
         Retrofit retrofit = new Retrofit.Builder()
+                .client(client)
                 .baseUrl(Api.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
@@ -108,14 +126,20 @@ public class ProfileViewActivity extends AppCompatActivity implements NetworkCha
 
             @Override
             public void onFailure(Call<List<Profile>> call, Throwable t) {
-                utils.set_snackbar(view,"Server connection failed", getApplicationContext(), "error");
+                utils.set_snackbar(view, "Server connection failed", getApplicationContext(), "error");
             }
         });
     }
 
     @Override
     public void onNetworkConnected(boolean isConnected) {
-        fetchData();
+        if (isConnected) {
+            no_network.setVisibility(View.GONE);
+            fetchData();
+        } else {
+            no_network.setVisibility(View.VISIBLE);
+
+        }
     }
 
     @Override

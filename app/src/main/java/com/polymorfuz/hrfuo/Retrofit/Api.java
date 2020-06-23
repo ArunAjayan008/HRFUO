@@ -15,6 +15,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.Query;
 
 public interface Api {
@@ -23,7 +24,8 @@ public interface Api {
 
     @GET("/getprofile")
     Call<List<Profile>> getprofile(
-            @Query("id") String id);
+            @Header ("Authorization")
+                    String authtoken);
 
     @GET("/getservice")
     Call<List<ServiceModel>> getservice(@Query("id") String id);

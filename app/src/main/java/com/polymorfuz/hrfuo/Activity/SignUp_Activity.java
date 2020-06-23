@@ -146,7 +146,7 @@ public class SignUp_Activity extends AppCompatActivity {
                                 utils.set_snackbar(view, response, getApplicationContext(), "error");
                             } else {
                                 new SharedPrefManager(getApplicationContext()).saveString("mobno", mob);
-                                new SharedPrefManager(getApplicationContext()).saveString("type", response);
+                                new SharedPrefManager(getApplicationContext()).saveString("jwt", response);
                                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
                                 finish();
                             }

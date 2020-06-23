@@ -15,7 +15,9 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 import com.polymorfuz.hrfuo.R;
 import com.polymorfuz.hrfuo.Retrofit.IMyService;
 import com.polymorfuz.hrfuo.Retrofit.RetrofitClient;
@@ -52,7 +54,6 @@ public class Login_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        gettoken();
         Retrofit retrofitclient = RetrofitClient.getPostInstance();
         view = getWindow().getDecorView().getRootView();
         iservice = retrofitclient.create(IMyService.class);
@@ -68,9 +69,9 @@ public class Login_Activity extends AppCompatActivity {
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 assert imm != null;
                 imm.hideSoftInputFromWindow(mainlayout.getWindowToken(), 0);
+                view = v;
 //                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                loginUser(mobile.getText().toString(),
-                        passwd.getText().toString(), v);
+                gettoken();
             }
         });
     }
@@ -87,7 +88,7 @@ public class Login_Activity extends AppCompatActivity {
 
         if (utils.isconnected(getApplicationContext())) {
             bar.setVisibility(View.VISIBLE);
-            compositeDisposable.add(iservice.loginUser(mobno, password,token)
+            compositeDisposable.add(iservice.loginUser(mobno, password, token)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribeWith(new DisposableObserver<String>() {
@@ -95,15 +96,12 @@ public class Login_Activity extends AppCompatActivity {
                         public void onNext(String response) {
                             bar.setVisibility(View.GONE);
                             response = response.substring(1, response.length() - 1);
-                            if (!(response.equals("contract") || response.equals("apprentice") || response.equals("permanent"))) {
-                                utils.set_snackbar(view, response, getApplicationContext(), "error");
-                            } else {
-                                new SharedPrefManager(getApplicationContext()).saveString("token", token);
-                                new SharedPrefManager(getApplicationContext()).saveString("mobno", mobno);
-                                new SharedPrefManager(getApplicationContext()).saveString("type", response);
-                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                                finish();
-                            }
+                            Log.d("eeeeeeeeeeeee", response);
+                            new SharedPrefManager(getApplicationContext()).saveString("jwt", response);
+                            new SharedPrefManager(getApplicationContext()).saveString("token", token);
+                            new SharedPrefManager(getApplicationContext()).saveString("mobno", mobno);
+                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            finish();
                         }
 
                         @Override
@@ -120,6 +118,7 @@ public class Login_Activity extends AppCompatActivity {
         } else {
             utils.set_snackbar(view, "Please connect to the internet", getApplicationContext(), "warning");
         }
+
     }
 
     private void gettoken() {
@@ -132,7 +131,13 @@ public class Login_Activity extends AppCompatActivity {
 
                     // Get new Instance ID token
                     token = Objects.requireNonNull(task.getResult()).getToken();
-                });
+                }).addOnSuccessListener(new OnSuccessListener<InstanceIdResult>() {
+            @Override
+            public void onSuccess(InstanceIdResult instanceIdResult) {
+                loginUser(mobile.getText().toString(),
+                        passwd.getText().toString(), view);
+            }
+        });
     }
 
     @Override

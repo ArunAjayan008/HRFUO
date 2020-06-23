@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements NetworkChangeRece
         notify_card = findViewById(R.id.notify_btn_ma);
         other_card = findViewById(R.id.others_btn_ma);
         logid = findViewById(R.id.toolbar).findViewById(R.id.logid);
-        id = new SharedPrefManager(getApplicationContext()).readString("id", "null");
+        id = new SharedPrefManager(getApplicationContext()).readString("jwt", "null");
         type = new SharedPrefManager(getApplicationContext()).readString("type", null);
         startfetch();
 
