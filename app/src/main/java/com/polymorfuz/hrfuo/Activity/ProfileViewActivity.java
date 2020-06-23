@@ -2,6 +2,8 @@ package com.polymorfuz.hrfuo.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,24 +19,27 @@ import com.polymorfuz.hrfuo.model.Profile;
 
 import java.util.List;
 
+import BroadcastReceiver.NetworkChangeReceiver;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ProfileViewActivity extends AppCompatActivity {
+public class ProfileViewActivity extends AppCompatActivity implements NetworkChangeReceiver.NetworkListener {
     TextView nametxt, agetxt, gendertxt, qualtxt, dobtxt, addrtxt, empidtxt, mobnotxt;
     ProfileViewModel viewModel;
     Button add;
     UtilityMethods utils=new UtilityMethods();
     View view;
     String id;
+    NetworkChangeReceiver receiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_view);
+        receiver=new NetworkChangeReceiver(this);
         id=new SharedPrefManager(getApplicationContext()).readString("id",null );
         view=getWindow().getDecorView().getRootView();
         nametxt = findViewById(R.id.profilename_pva_txt);
@@ -106,5 +111,23 @@ public class ProfileViewActivity extends AppCompatActivity {
                 utils.set_snackbar(view,"Server connection failed", getApplicationContext(), "error");
             }
         });
+    }
+
+    @Override
+    public void onNetworkConnected(boolean isConnected) {
+        fetchData();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(receiver, filter);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        unregisterReceiver(receiver);
     }
 }
