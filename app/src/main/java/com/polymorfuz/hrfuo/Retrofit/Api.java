@@ -19,7 +19,6 @@ import retrofit2.http.Query;
 
 public interface Api {
 
-    //    String BASE_URL = "http://192.168.1.6:3000";13.233.128.2
     String BASE_URL = Config.SERVER_IP;
 
     @GET("/getprofile")

@@ -49,6 +49,7 @@ public class EPF_ESI_Activity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), PFActivity.class);
                 intent.putExtra("uan", uanval);
                 intent.putExtra("password", pswd);
+                startActivity(intent);
             }
         });
     }
