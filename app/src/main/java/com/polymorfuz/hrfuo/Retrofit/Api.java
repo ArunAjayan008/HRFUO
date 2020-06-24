@@ -15,33 +15,33 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
-import retrofit2.http.Header;
 import retrofit2.http.Query;
 
 public interface Api {
 
     String BASE_URL = Config.SERVER_IP;
 
+
+    @GET("/getaccess")
+    Call<String>getaccess();
+
     @GET("/getprofile")
-    Call<List<Profile>> getprofile(
-            @Header ("Authorization")
-                    String authtoken);
+    Call<List<Profile>> getprofile();
 
     @GET("/getservice")
-    Call<List<ServiceModel>> getservice(@Query("id") String id);
+    Call<List<ServiceModel>> getservice();
 
     @GET("/getleave")
     Call<List<LeaveSummaryModel>> getleave(@Query("id") String id);
 
     @GET("/getnotify")
-    Call<List<Notifications>> getnotify(@Query("id") String id);
+    Call<List<Notifications>> getnotify();
 
     @GET("/getholiday")
-    Call<List<HolidayModel>> getholidays(@Query("id") String id);
+    Call<List<HolidayModel>> getholidays();
 
     @GET("/getearning")
     Call<List<EarningModel>> getearning(
-            @Query("id") String id,
             @Query("mn") String mn,
             @Query("yr") String yr
     );
@@ -54,14 +54,13 @@ public interface Api {
     );
 
     @GET("/getepfesi")
-    Call<List<EPF_ESIModel>> getPF(@Query("id") String id);
+    Call<List<EPF_ESIModel>> getPF();
 
     @GET("/getid")
     Call<String> getID(@Query("id") String id);
 
     @GET("/getleavedays")
-    Call<List<MonthlyLeaveModel>> getleaves(@Query("id") String id,
-                                            @Query("mn") String mn,
+    Call<List<MonthlyLeaveModel>> getleaves(@Query("mn") String mn,
                                             @Query("yr") String yr);
 
 }

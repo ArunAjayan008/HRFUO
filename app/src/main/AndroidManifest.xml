@@ -14,7 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.EPF_ESI_Activity"/>
+        <activity android:name=".Activity.OnStartConfigActivity"></activity>
+        <activity android:name=".Activity.EPF_ESI_Activity" />
         <activity android:name=".Activity.CasualSalaryActivity" />
         <activity android:name=".Activity.Casual_ServiceActivity" />
         <activity
@@ -50,9 +51,9 @@
         <activity android:name=".Activity.ProfileViewActivity" />
         <activity android:name=".Activity.MainActivity" />
 
-        <receiver android:name="BroadcastReceiver.NetworkChangeReceiver">
+        <receiver android:name=".BroadcastReceiver.NetworkChangeReceiver">
             <intent-filter>
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>
         </receiver>
     </application>

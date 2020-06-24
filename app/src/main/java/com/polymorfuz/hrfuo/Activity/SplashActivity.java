@@ -18,9 +18,9 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        String id=new SharedPrefManager(getApplicationContext()).readString("id",null);
+        String id=new SharedPrefManager(getApplicationContext()).readString("authtoken",null);
         if(id!=null){
-            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+            startActivity(new Intent(getApplicationContext(),OnStartConfigActivity.class));
             finish();
         }
         else {

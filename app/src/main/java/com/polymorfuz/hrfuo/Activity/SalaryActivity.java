@@ -19,8 +19,12 @@ import com.polymorfuz.hrfuo.model.Deduct_Model;
 import com.polymorfuz.hrfuo.model.EarningModel;
 import com.polymorfuz.hrfuo.model.Profile;
 
+import java.io.IOException;
 import java.util.List;
 
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -42,7 +46,6 @@ public class SalaryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_salary);
-        id = new SharedPrefManager(getApplicationContext()).readString("id", null);
         tableLayout=findViewById(R.id.tableLayout);
         tableLayout.setVisibility(View.GONE);
         buttonsubmit = findViewById(R.id.buttonsubmit);
@@ -81,13 +84,25 @@ public class SalaryActivity extends AppCompatActivity {
     }
 
     private void fetchData(String month, String year) {
+        id = new SharedPrefManager(getApplicationContext()).readString("accesstoken", null);
+        OkHttpClient.Builder client = new OkHttpClient.Builder();
+        client.addInterceptor(new Interceptor() {
+            @Override
+            public okhttp3.Response intercept(Chain chain) throws IOException {
+                Request request = chain.request();
+                Request.Builder newRequest = request.newBuilder()
+                        .addHeader("Authorization", "Bearer " + id);
+                return chain.proceed(newRequest.build());
+            }
+        });
         Retrofit retrofit = new Retrofit.Builder()
+                .client(client.build())
                 .baseUrl(Api.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         Api api = retrofit.create(Api.class);
-        Call<List<EarningModel>> call = api.getearning(id,month, year);
+        Call<List<EarningModel>> call = api.getearning(month, year);
         call.enqueue(new Callback<List<EarningModel>>() {
             @Override
             public void onResponse(Call<List<EarningModel>> call, Response<List<EarningModel>> response) {

@@ -3,16 +3,19 @@ package com.polymorfuz.hrfuo.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.polymorfuz.hrfuo.R;
 import com.polymorfuz.hrfuo.Retrofit.Api;
-import com.polymorfuz.hrfuo.Room.ProfileViewModel;
 import com.polymorfuz.hrfuo.Utilities.SharedPrefManager;
 import com.polymorfuz.hrfuo.Utilities.UtilityMethods;
 import com.polymorfuz.hrfuo.model.Profile;
@@ -20,7 +23,8 @@ import com.polymorfuz.hrfuo.model.Profile;
 import java.io.IOException;
 import java.util.List;
 
-import BroadcastReceiver.NetworkChangeReceiver;
+import com.polymorfuz.hrfuo.BroadcastReceiver.NetworkChangeReceiver;
+
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -32,22 +36,21 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ProfileViewActivity extends AppCompatActivity implements NetworkChangeReceiver.NetworkListener {
     TextView nametxt, agetxt, gendertxt, qualtxt, dobtxt, addrtxt, empidtxt, mobnotxt;
-    ProfileViewModel viewModel;
-    Button add;
     UtilityMethods utils = new UtilityMethods();
     View view;
     String id;
     NetworkChangeReceiver receiver;
     ConstraintLayout no_network;
+    LinearLayout dynamiclayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_view);
         receiver = new NetworkChangeReceiver(this);
-        id = new SharedPrefManager(getApplicationContext()).readString("jwt", null);
         view = getWindow().getDecorView().getRootView();
         no_network = findViewById(R.id.no_network);
+        dynamiclayout = findViewById(R.id.dynamic_content);
         nametxt = findViewById(R.id.profilename_pva_txt);
         empidtxt = findViewById(R.id.empid_pva_txt);
         mobnotxt = findViewById(R.id.mobno_pva_txt);
@@ -56,72 +59,49 @@ public class ProfileViewActivity extends AppCompatActivity implements NetworkCha
         qualtxt = findViewById(R.id.qual_pva_txt);
         dobtxt = findViewById(R.id.dob_pva_txt);
         addrtxt = findViewById(R.id.addr_pva_txt);
-        add = findViewById(R.id.add);
-        add.setOnClickListener(v -> {
-//            startActivity(new Intent(getApplicationContext(),NewActivity.class));
-//            ProfileDB db = new ProfileDB("Soman", "15", "Male", "Mtech", "15-02-2017");
-//            viewModel.insert(db);
-        });
-//        viewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
-//        viewModel.getprofiledata().observe(this, new Observer<List<ProfileDB>>() {
-//            @Override
-//            public void onChanged(List<ProfileDB> profileDBS) {
-//                setData(profileDBS);
-//            }
-//        });
-        if (utils.isconnected(getApplicationContext())) {
-            no_network.setVisibility(View.GONE);
-            fetchData();
-        } else {
-            utils.set_snackbar(view, "Please connect to the internet", getApplicationContext(), "warning");
-            no_network.setVisibility(View.VISIBLE);
-        }
+
     }
 
-//    private void setData(List<ProfileDB> db) {
-//        if (db.size() > 0) {
-//            ProfileDB data = db.get(0);
-//            nametxt.setText(data.getEmpname());
-//            agetxt.setText(data.getAge());
-//            gendertxt.setText(data.getGender());
-//            qualtxt.setText(data.getQualification());
-//            dobtxt.setText(data.getDob());
-//        }
-//    }
-
     private void fetchData() {
-        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
+        id = new SharedPrefManager(getApplicationContext()).readString("accesstoken", null);
+        OkHttpClient.Builder client = new OkHttpClient.Builder();
+        client.addInterceptor(new Interceptor() {
             @Override
             public okhttp3.Response intercept(Chain chain) throws IOException {
-                Request newRequest = chain.request().newBuilder()
-                        .addHeader("Authorization", "Bearer " + id)
-                        .build();
-                return chain.proceed(newRequest);
+                Request request = chain.request();
+                Request.Builder newRequest = request.newBuilder()
+                        .addHeader("Authorization", "Bearer " + id);
+                return chain.proceed(newRequest.build());
             }
-        }).build();
+        });
         Retrofit retrofit = new Retrofit.Builder()
-                .client(client)
+                .client(client.build())
                 .baseUrl(Api.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         Api api = retrofit.create(Api.class);
 
-        Call<List<Profile>> call = api.getprofile(id);
+        Call<List<Profile>> call = api.getprofile();
 
         call.enqueue(new Callback<List<Profile>>() {
             @Override
             public void onResponse(Call<List<Profile>> call, Response<List<Profile>> response) {
-                List<Profile> adslist = response.body();
-                assert adslist != null;
-                nametxt.setText(adslist.get(0).getDesig());
-                empidtxt.setText(adslist.get(0).getUserid());
-                mobnotxt.setText(adslist.get(0).getMobno());
-                agetxt.setText(adslist.get(0).getAge());
-                dobtxt.setText(adslist.get(0).getDob());
-                gendertxt.setText(adslist.get(0).getGender());
-                qualtxt.setText(adslist.get(0).getEdu_qual());
-                addrtxt.setText(adslist.get(0).getAddress());
+                if (response.message().equals("Forbidden")) {
+                    utils.getAccesstoken(getApplicationContext());
+                    setNoNetwork("Session Timed Out");
+                } else {
+                    List<Profile> adslist = response.body();
+                    assert adslist != null;
+                    nametxt.setText(adslist.get(0).getDesig());
+                    empidtxt.setText(adslist.get(0).getUserid());
+                    mobnotxt.setText(adslist.get(0).getMobno());
+                    agetxt.setText(adslist.get(0).getAge());
+                    dobtxt.setText(adslist.get(0).getDob());
+                    gendertxt.setText(adslist.get(0).getGender());
+                    qualtxt.setText(adslist.get(0).getEdu_qual());
+                    addrtxt.setText(adslist.get(0).getAddress());
+                }
             }
 
             @Override
@@ -138,7 +118,6 @@ public class ProfileViewActivity extends AppCompatActivity implements NetworkCha
             fetchData();
         } else {
             no_network.setVisibility(View.VISIBLE);
-
         }
     }
 
@@ -147,11 +126,36 @@ public class ProfileViewActivity extends AppCompatActivity implements NetworkCha
         super.onStart();
         IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
         registerReceiver(receiver, filter);
+        if (utils.isconnected(getApplicationContext())) {
+            no_network.setVisibility(View.GONE);
+            fetchData();
+        } else {
+            utils.set_snackbar(view, "Please connect to the internet", getApplicationContext(), "warning");
+            no_network.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
     protected void onStop() {
         super.onStop();
         unregisterReceiver(receiver);
+    }
+
+    private void setNoNetwork(String header) {
+        Button btnview;
+        TextView errorv;
+        View wizardView = getLayoutInflater()
+                .inflate(R.layout.server_error, dynamiclayout, false);
+        dynamiclayout.addView(wizardView);
+        errorv = findViewById(R.id.dynamic_content).findViewById(R.id.error_head);
+        errorv.setText(header);
+        btnview = findViewById(R.id.dynamic_content).findViewById(R.id.btntryagain);
+        btnview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fetchData();
+                dynamiclayout.removeView(wizardView);
+            }
+        });
     }
 }

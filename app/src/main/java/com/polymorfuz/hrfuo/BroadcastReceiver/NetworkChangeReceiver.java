@@ -1,4 +1,4 @@
-package BroadcastReceiver;
+package com.polymorfuz.hrfuo.BroadcastReceiver;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

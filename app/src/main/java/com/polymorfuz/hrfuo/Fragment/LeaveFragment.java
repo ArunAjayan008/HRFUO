@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.polymorfuz.hrfuo.Adapter.HolidayAdapter;
 import com.polymorfuz.hrfuo.Adapter.LeaveAdapter;
+import com.polymorfuz.hrfuo.BroadcastReceiver.NetworkChangeReceiver;
 import com.polymorfuz.hrfuo.R;
 import com.polymorfuz.hrfuo.Retrofit.Api;
 import com.polymorfuz.hrfuo.Utilities.SharedPrefManager;
@@ -24,8 +25,12 @@ import com.polymorfuz.hrfuo.Utilities.UtilityMethods;
 import com.polymorfuz.hrfuo.model.MonthlyLeaveModel;
 import com.polymorfuz.hrfuo.model.LeaveSummaryModel;
 
+import java.io.IOException;
 import java.util.List;
 
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -35,7 +40,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class LeaveFragment extends Fragment {
+public class LeaveFragment extends Fragment implements NetworkChangeReceiver.NetworkListener {
+    NetworkChangeReceiver receiver;
     TextView cltaken, eltaken, hpltaken, esitaken, absent, totalleave, bal_cl, bal_el, bal_hpl;
     String id;
     RecyclerView leavecycler;
@@ -58,9 +64,9 @@ public class LeaveFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_leave, container, false);
         leavecycler = view.findViewById(R.id.leave_recycler);
+        receiver = new NetworkChangeReceiver(this);
         LinearLayoutManager lmgr = new LinearLayoutManager(getContext());
         leavecycler.setLayoutManager(lmgr);
-        id = new SharedPrefManager(getContext()).readString("id", null);
         leavelayout = view.findViewById(R.id.leave_show_layout);
         cltaken = view.findViewById(R.id.cl_taken_leavfrag);
         eltaken = view.findViewById(R.id.el_taken_leavfrag);
@@ -121,14 +127,26 @@ public class LeaveFragment extends Fragment {
 
 
     private void fetchLeave(String mnth, String year,View v) {
+        id = new SharedPrefManager(getContext()).readString("accesstoken", null);
+        OkHttpClient.Builder client = new OkHttpClient.Builder();
+        client.addInterceptor(new Interceptor() {
+            @Override
+            public okhttp3.Response intercept(Chain chain) throws IOException {
+                Request request = chain.request();
+                Request.Builder newRequest = request.newBuilder()
+                        .addHeader("Authorization", "Bearer " + id);
+                return chain.proceed(newRequest.build());
+            }
+        });
         Retrofit retrofit = new Retrofit.Builder()
+                .client(client.build())
                 .baseUrl(Api.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         Api api = retrofit.create(Api.class);
 
-        Call<List<MonthlyLeaveModel>> call = api.getleaves(id, mnth, year);
+        Call<List<MonthlyLeaveModel>> call = api.getleaves(mnth, year);
         if (utils.isconnected(getContext())) {
             call.enqueue(new Callback<List<MonthlyLeaveModel>>() {
                 @Override
@@ -148,5 +166,10 @@ public class LeaveFragment extends Fragment {
         } else {
             utils.set_snackbar(v, "Please connect to the internet", getContext(), "warning");
         }
+    }
+
+    @Override
+    public void onNetworkConnected(boolean isConnected) {
+
     }
 }

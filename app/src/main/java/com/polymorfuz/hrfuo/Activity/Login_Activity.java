@@ -70,8 +70,7 @@ public class Login_Activity extends AppCompatActivity {
                 assert imm != null;
                 imm.hideSoftInputFromWindow(mainlayout.getWindowToken(), 0);
                 view = v;
-//                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                gettoken();
+                getFirebasetoken();
             }
         });
     }
@@ -96,11 +95,9 @@ public class Login_Activity extends AppCompatActivity {
                         public void onNext(String response) {
                             bar.setVisibility(View.GONE);
                             response = response.substring(1, response.length() - 1);
-                            Log.d("eeeeeeeeeeeee", response);
-                            new SharedPrefManager(getApplicationContext()).saveString("jwt", response);
-                            new SharedPrefManager(getApplicationContext()).saveString("token", token);
+                            new SharedPrefManager(getApplicationContext()).saveString("authtoken", response);
                             new SharedPrefManager(getApplicationContext()).saveString("mobno", mobno);
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            startActivity(new Intent(getApplicationContext(),OnStartConfigActivity.class));
                             finish();
                         }
 
@@ -121,7 +118,7 @@ public class Login_Activity extends AppCompatActivity {
 
     }
 
-    private void gettoken() {
+    private void getFirebasetoken() {
         FirebaseInstanceId.getInstance().getInstanceId()
                 .addOnCompleteListener(task -> {
                     if (!task.isSuccessful()) {
@@ -131,6 +128,7 @@ public class Login_Activity extends AppCompatActivity {
 
                     // Get new Instance ID token
                     token = Objects.requireNonNull(task.getResult()).getToken();
+                    new SharedPrefManager(getApplicationContext()).saveString("firebasetoken", token);
                 }).addOnSuccessListener(new OnSuccessListener<InstanceIdResult>() {
             @Override
             public void onSuccess(InstanceIdResult instanceIdResult) {

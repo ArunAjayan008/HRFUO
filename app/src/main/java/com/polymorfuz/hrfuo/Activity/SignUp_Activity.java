@@ -64,12 +64,10 @@ public class SignUp_Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setAppLocale("ml");
         setContentView(R.layout.activity_sign_up);
         view = getWindow().getDecorView().getRootView();
         Retrofit retrofitclient = RetrofitClient.getPostInstance();
         iservice = retrofitclient.create(IMyService.class);
-        gettoken();
         name = findViewById(R.id.username);
         mobno = findViewById(R.id.mobno);
         password = findViewById(R.id.password);
@@ -110,10 +108,7 @@ public class SignUp_Activity extends AppCompatActivity {
 
                     // Get new Instance ID token
                     token = Objects.requireNonNull(task.getResult()).getToken();
-                    new SharedPrefManager(getApplicationContext()).saveString("token", token);
-//                        registerUser(name.getText().toString(),
-//                                mobno.getText().toString(),
-//                                password.getText().toString(), token);
+                    new SharedPrefManager(getApplicationContext()).saveString("firebasetoken", token);
                 });
     }
 
@@ -146,8 +141,8 @@ public class SignUp_Activity extends AppCompatActivity {
                                 utils.set_snackbar(view, response, getApplicationContext(), "error");
                             } else {
                                 new SharedPrefManager(getApplicationContext()).saveString("mobno", mob);
-                                new SharedPrefManager(getApplicationContext()).saveString("jwt", response);
-                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                new SharedPrefManager(getApplicationContext()).saveString("authtoken", response);
+                                startActivity(new Intent(getApplicationContext(), OnStartConfigActivity.class));
                                 finish();
                             }
                         }
@@ -174,5 +169,12 @@ public class SignUp_Activity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         finishAffinity();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        gettoken();
+        setAppLocale("ml");
     }
 }
